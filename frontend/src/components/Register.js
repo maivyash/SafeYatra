@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { performMockEKYC } from '../services/ekycService';
@@ -25,8 +25,20 @@ const Register = () => {
   const [cameraType, setCameraType] = useState('');
   const [idProofFrontPhoto, setIdProofFrontPhoto] = useState(null);
   const [idProofBackPhoto, setIdProofBackPhoto] = useState(null);
+  const [currentStep, setCurrentStep] = useState(1);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   
   const { register, error, setError } = useAuth();
+
+  // Animation effect on component mount
+  useEffect(() => {
+    setIsAnimating(true);
+    return () => setIsAnimating(false);
+  }, []);
+
+  const totalSteps = 4;
 
   const handleAadhaarCardSelect = () => {
     setShowAadhaarSelector(true);
@@ -82,6 +94,36 @@ const Register = () => {
     if (error) {
       setError('');
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const toggleConfirmPasswordVisibility = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  const nextStep = () => {
+    if (currentStep < totalSteps) {
+      setCurrentStep(currentStep + 1);
+    }
+  };
+
+  const prevStep = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const getStepTitle = (step) => {
+    const titles = {
+      1: 'Personal Information',
+      2: 'Contact Details',
+      3: 'Security Setup',
+      4: 'Identity Verification'
+    };
+    return titles[step];
   };
 
   const validateForm = () => {
@@ -198,222 +240,489 @@ const Register = () => {
 
   return (
     <div className="auth-container">
-      <div className="card">
-        <h2>Register</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Full Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              className="form-control"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Enter your full name"
-            />
-            {errors.name && <div className="error-message">{errors.name}</div>}
+      <div className={`modern-register-card ${isAnimating ? 'animate-in' : ''}`}>
+        {/* Header Section */}
+        <div className="register-header">
+          <div className="register-icon">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 21V19C16 17.9391 15.5786 16.9217 14.8284 16.1716C14.0783 15.4214 13.0609 15 12 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <circle cx="8.5" cy="7" r="4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M20 8V14L23 11L26 14V8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M17 11H23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
           </div>
-          
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="form-control"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-            />
-            {errors.email && <div className="error-message">{errors.email}</div>}
+          <h2 className="register-title">Join SafeYatra</h2>
+          <p className="register-subtitle">Create your secure travel account</p>
+        </div>
+
+        {/* Progress Bar */}
+        <div className="progress-container">
+          <div className="progress-bar">
+            <div 
+              className="progress-fill" 
+              style={{ width: `${(currentStep / totalSteps) * 100}%` }}
+            ></div>
           </div>
-          
-          <div className="form-group">
-            <label htmlFor="mobile">Mobile Number</label>
-            <input
-              type="tel"
-              id="mobile"
-              name="mobile"
-              className="form-control"
-              value={formData.mobile}
-              onChange={handleChange}
-              placeholder="Enter your 10-digit mobile number"
-              maxLength="10"
-            />
-            {errors.mobile && <div className="error-message">{errors.mobile}</div>}
+          <div className="progress-steps">
+            {Array.from({ length: totalSteps }, (_, i) => (
+              <div 
+                key={i + 1} 
+                className={`progress-step ${currentStep >= i + 1 ? 'active' : ''}`}
+              >
+                <div className="step-number">{i + 1}</div>
+                <div className="step-title">{getStepTitle(i + 1)}</div>
+              </div>
+            ))}
           </div>
-          
-          <div className="form-group">
-            <label htmlFor="dateOfBirth">Date of Birth</label>
-            <input
-              type="date"
-              id="dateOfBirth"
-              name="dateOfBirth"
-              className="form-control"
-              value={formData.dateOfBirth}
-              onChange={handleChange}
-              max={new Date().toISOString().split('T')[0]}
-            />
-            {errors.dateOfBirth && <div className="error-message">{errors.dateOfBirth}</div>}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="gender">Gender</label>
-            <select
-              id="gender"
-              name="gender"
-              className="form-control"
-              value={formData.gender}
-              onChange={handleChange}
-            >
-              <option value="">Select Gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
-            {errors.gender && <div className="error-message">{errors.gender}</div>}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="form-control"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Enter your password"
-            />
-            {errors.password && <div className="error-message">{errors.password}</div>}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              className="form-control"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              placeholder="Confirm your password"
-            />
-            {errors.confirmPassword && <div className="error-message">{errors.confirmPassword}</div>}
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="aadhaarNumber">Aadhaar Number</label>
-            <div className="aadhaar-input-group">
-              <input
-                type="text"
-                id="aadhaarNumber"
-                name="aadhaarNumber"
-                className="form-control"
-                value={formData.aadhaarNumber}
-                onChange={handleChange}
-                placeholder="Enter your 12-digit Aadhaar number"
-                maxLength="12"
-                readOnly={selectedAadhaarData ? true : false}
-              />
+        </div>
+
+        {/* Form Section */}
+        <form onSubmit={handleSubmit} className="modern-register-form">
+          {/* Step 1: Personal Information */}
+          {currentStep === 1 && (
+            <div className="form-step">
+              <div className="step-header">
+                <h3>Personal Information</h3>
+                <p>Tell us about yourself</p>
+              </div>
+              
+              <div className="input-group">
+                <div className="input-container">
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    className={`modern-input ${errors.name ? 'error' : ''}`}
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder=" "
+                    required
+                  />
+                  <label htmlFor="name" className="floating-label">
+                    <span className="label-icon">👤</span>
+                    Full Name
+                  </label>
+                  <div className="input-border"></div>
+                </div>
+                {errors.name && (
+                  <div className="error-message-modern">
+                    <span className="error-icon">⚠️</span>
+                    {errors.name}
+                  </div>
+                )}
+              </div>
+
+              <div className="input-group">
+                <div className="input-container">
+                  <input
+                    type="date"
+                    id="dateOfBirth"
+                    name="dateOfBirth"
+                    className={`modern-input ${errors.dateOfBirth ? 'error' : ''}`}
+                    value={formData.dateOfBirth}
+                    onChange={handleChange}
+                    max={new Date().toISOString().split('T')[0]}
+                    required
+                  />
+                  <label htmlFor="dateOfBirth" className="floating-label">
+                    <span className="label-icon">🎂</span>
+                    Date of Birth
+                  </label>
+                  <div className="input-border"></div>
+                </div>
+                {errors.dateOfBirth && (
+                  <div className="error-message-modern">
+                    <span className="error-icon">⚠️</span>
+                    {errors.dateOfBirth}
+                  </div>
+                )}
+              </div>
+
+              <div className="input-group">
+                <div className="input-container select-container">
+                  <select
+                    id="gender"
+                    name="gender"
+                    className={`modern-select ${errors.gender ? 'error' : ''}`}
+                    value={formData.gender}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="">Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                  <label htmlFor="gender" className="floating-label">
+                    <span className="label-icon">⚥</span>
+                    Gender
+                  </label>
+                  <div className="input-border"></div>
+                </div>
+                {errors.gender && (
+                  <div className="error-message-modern">
+                    <span className="error-icon">⚠️</span>
+                    {errors.gender}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Step 2: Contact Details */}
+          {currentStep === 2 && (
+            <div className="form-step">
+              <div className="step-header">
+                <h3>Contact Details</h3>
+                <p>How can we reach you?</p>
+              </div>
+              
+              <div className="input-group">
+                <div className="input-container">
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    className={`modern-input ${errors.email ? 'error' : ''}`}
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder=" "
+                    required
+                  />
+                  <label htmlFor="email" className="floating-label">
+                    <span className="label-icon">📧</span>
+                    Email Address
+                  </label>
+                  <div className="input-border"></div>
+                </div>
+                {errors.email && (
+                  <div className="error-message-modern">
+                    <span className="error-icon">⚠️</span>
+                    {errors.email}
+                  </div>
+                )}
+              </div>
+
+              <div className="input-group">
+                <div className="input-container">
+                  <input
+                    type="tel"
+                    id="mobile"
+                    name="mobile"
+                    className={`modern-input ${errors.mobile ? 'error' : ''}`}
+                    value={formData.mobile}
+                    onChange={handleChange}
+                    placeholder=" "
+                    maxLength="10"
+                    required
+                  />
+                  <label htmlFor="mobile" className="floating-label">
+                    <span className="label-icon">📱</span>
+                    Mobile Number
+                  </label>
+                  <div className="input-border"></div>
+                </div>
+                {errors.mobile && (
+                  <div className="error-message-modern">
+                    <span className="error-icon">⚠️</span>
+                    {errors.mobile}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Step 3: Security Setup */}
+          {currentStep === 3 && (
+            <div className="form-step">
+              <div className="step-header">
+                <h3>Security Setup</h3>
+                <p>Create a secure password</p>
+              </div>
+              
+              <div className="input-group">
+                <div className="input-container">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    name="password"
+                    className={`modern-input ${errors.password ? 'error' : ''}`}
+                    value={formData.password}
+                    onChange={handleChange}
+                    placeholder=" "
+                    required
+                  />
+                  <label htmlFor="password" className="floating-label">
+                    <span className="label-icon">🔒</span>
+                    Password
+                  </label>
+                  <button
+                    type="button"
+                    className="password-toggle"
+                    onClick={togglePasswordVisibility}
+                    tabIndex="-1"
+                  >
+                    {showPassword ? (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    ) : (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    )}
+                  </button>
+                  <div className="input-border"></div>
+                </div>
+                {errors.password && (
+                  <div className="error-message-modern">
+                    <span className="error-icon">⚠️</span>
+                    {errors.password}
+                  </div>
+                )}
+              </div>
+
+              <div className="input-group">
+                <div className="input-container">
+                  <input
+                    type={showConfirmPassword ? "text" : "password"}
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    className={`modern-input ${errors.confirmPassword ? 'error' : ''}`}
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
+                    placeholder=" "
+                    required
+                  />
+                  <label htmlFor="confirmPassword" className="floating-label">
+                    <span className="label-icon">🔐</span>
+                    Confirm Password
+                  </label>
+                  <button
+                    type="button"
+                    className="password-toggle"
+                    onClick={toggleConfirmPasswordVisibility}
+                    tabIndex="-1"
+                  >
+                    {showConfirmPassword ? (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    ) : (
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    )}
+                  </button>
+                  <div className="input-border"></div>
+                </div>
+                {errors.confirmPassword && (
+                  <div className="error-message-modern">
+                    <span className="error-icon">⚠️</span>
+                    {errors.confirmPassword}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Step 4: Identity Verification */}
+          {currentStep === 4 && (
+            <div className="form-step">
+              <div className="step-header">
+                <h3>Identity Verification</h3>
+                <p>Verify your identity for secure travel</p>
+              </div>
+              
+              <div className="input-group">
+                <div className="input-container">
+                  <input
+                    type="text"
+                    id="aadhaarNumber"
+                    name="aadhaarNumber"
+                    className={`modern-input ${errors.aadhaarNumber ? 'error' : ''}`}
+                    value={formData.aadhaarNumber}
+                    onChange={handleChange}
+                    placeholder=" "
+                    maxLength="12"
+                    readOnly={selectedAadhaarData ? true : false}
+                    required
+                  />
+                  <label htmlFor="aadhaarNumber" className="floating-label">
+                    <span className="label-icon">🆔</span>
+                    Aadhaar Number
+                  </label>
+                  <button
+                    type="button"
+                    className="digilocker-btn"
+                    onClick={handleAadhaarCardSelect}
+                  >
+                    {selectedAadhaarData ? '✓' : '🔗'}
+                  </button>
+                  <div className="input-border"></div>
+                </div>
+                {selectedAadhaarData && (
+                  <div className="success-message-modern">
+                    <span className="success-icon">✓</span>
+                    Aadhaar card fetched from DigiLocker successfully
+                  </div>
+                )}
+                {errors.aadhaarNumber && (
+                  <div className="error-message-modern">
+                    <span className="error-icon">⚠️</span>
+                    {errors.aadhaarNumber}
+                  </div>
+                )}
+              </div>
+
+              <div className="photo-capture-grid">
+                <div className="photo-capture-item">
+                  <h4>ID Proof Front</h4>
+                  {idProofFrontPhoto ? (
+                    <div className="captured-photo-modern">
+                      <img src={idProofFrontPhoto.base64} alt="ID Front" className="photo-thumbnail-modern" />
+                      <button
+                        type="button"
+                        className="retake-btn"
+                        onClick={() => handleCameraCapture('front')}
+                      >
+                        🔄 Retake
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      className="photo-capture-btn-modern"
+                      onClick={() => handleCameraCapture('front')}
+                    >
+                      <span className="capture-icon">📷</span>
+                      <span>Capture Front</span>
+                    </button>
+                  )}
+                  {errors.idProofFrontPhoto && (
+                    <div className="error-message-modern">
+                      <span className="error-icon">⚠️</span>
+                      {errors.idProofFrontPhoto}
+                    </div>
+                  )}
+                </div>
+
+                <div className="photo-capture-item">
+                  <h4>ID Proof Back</h4>
+                  {idProofBackPhoto ? (
+                    <div className="captured-photo-modern">
+                      <img src={idProofBackPhoto.base64} alt="ID Back" className="photo-thumbnail-modern" />
+                      <button
+                        type="button"
+                        className="retake-btn"
+                        onClick={() => handleCameraCapture('back')}
+                      >
+                        🔄 Retake
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      type="button"
+                      className="photo-capture-btn-modern"
+                      onClick={() => handleCameraCapture('back')}
+                    >
+                      <span className="capture-icon">📷</span>
+                      <span>Capture Back</span>
+                    </button>
+                  )}
+                  {errors.idProofBackPhoto && (
+                    <div className="error-message-modern">
+                      <span className="error-icon">⚠️</span>
+                      {errors.idProofBackPhoto}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Error Messages */}
+          {errors.submit && (
+            <div className="error-message-modern submit-error">
+              <span className="error-icon">❌</span>
+              {errors.submit}
+            </div>
+          )}
+          {error && (
+            <div className="error-message-modern submit-error">
+              <span className="error-icon">❌</span>
+              {error}
+            </div>
+          )}
+
+          {/* Navigation Buttons */}
+          <div className="form-navigation">
+            {currentStep > 1 && (
               <button
                 type="button"
-                className="btn btn-secondary digilocker-btn"
-                onClick={handleAadhaarCardSelect}
+                className="nav-btn prev-btn"
+                onClick={prevStep}
               >
-                {selectedAadhaarData ? '✓ From DigiLocker' : 'Fetch from DigiLocker'}
+                ← Previous
               </button>
-            </div>
-            {selectedAadhaarData && (
-              <div className="success-message">
-                ✓ Aadhaar card fetched from DigiLocker successfully
-              </div>
             )}
-            {errors.aadhaarNumber && <div className="error-message">{errors.aadhaarNumber}</div>}
+            
+            {currentStep < totalSteps ? (
+              <button
+                type="button"
+                className="nav-btn next-btn"
+                onClick={nextStep}
+              >
+                Next →
+              </button>
+            ) : (
+              <button
+                type="submit"
+                className={`modern-submit-btn ${isLoading || isEKYCInProgress ? 'loading' : ''}`}
+                disabled={isLoading || isEKYCInProgress}
+              >
+                <span className="btn-content">
+                  {isEKYCInProgress ? (
+                    <>
+                      <div className="spinner"></div>
+                      Verifying Identity...
+                    </>
+                  ) : isLoading ? (
+                    <>
+                      <div className="spinner"></div>
+                      Creating Account...
+                    </>
+                  ) : (
+                    <>
+                      <span className="btn-icon">🚀</span>
+                      Complete Registration
+                    </>
+                  )}
+                </span>
+                <div className="btn-ripple"></div>
+              </button>
+            )}
           </div>
-          
-          <div className="form-group">
-            <label>ID Proof Front Photo</label>
-            <div className="photo-capture-section">
-              {idProofFrontPhoto ? (
-                <div className="captured-photo-preview">
-                  <img src={idProofFrontPhoto.base64} alt="ID Front" className="photo-thumbnail" />
-                  <div className="photo-info">
-                    <p><strong>Format:</strong> {idProofFrontPhoto.format}</p>
-                    <p><strong>Size:</strong> {idProofFrontPhoto.size}</p>
-                    <p><strong>Captured:</strong> {new Date(idProofFrontPhoto.capturedAt).toLocaleString()}</p>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => handleCameraCapture('front')}
-                  >
-                    📷 Retake Front Photo
-                  </button>
-                </div>
-              ) : (
-                <button
-                  type="button"
-                  className="btn btn-primary photo-capture-btn"
-                  onClick={() => handleCameraCapture('front')}
-                >
-                  📷 Capture ID Front Photo
-                </button>
-              )}
-            </div>
-            {errors.idProofFrontPhoto && <div className="error-message">{errors.idProofFrontPhoto}</div>}
-          </div>
-          
-          <div className="form-group">
-            <label>ID Proof Back Photo</label>
-            <div className="photo-capture-section">
-              {idProofBackPhoto ? (
-                <div className="captured-photo-preview">
-                  <img src={idProofBackPhoto.base64} alt="ID Back" className="photo-thumbnail" />
-                  <div className="photo-info">
-                    <p><strong>Format:</strong> {idProofBackPhoto.format}</p>
-                    <p><strong>Size:</strong> {idProofBackPhoto.size}</p>
-                    <p><strong>Captured:</strong> {new Date(idProofBackPhoto.capturedAt).toLocaleString()}</p>
-                  </div>
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    onClick={() => handleCameraCapture('back')}
-                  >
-                    📷 Retake Back Photo
-                  </button>
-                </div>
-              ) : (
-                <button
-                  type="button"
-                  className="btn btn-primary photo-capture-btn"
-                  onClick={() => handleCameraCapture('back')}
-                >
-                  📷 Capture ID Back Photo
-                </button>
-              )}
-            </div>
-            {errors.idProofBackPhoto && <div className="error-message">{errors.idProofBackPhoto}</div>}
-          </div>
-          
-          {errors.submit && <div className="error-message">{errors.submit}</div>}
-          {error && <div className="error-message">{error}</div>}
-          
-          <button 
-            type="submit" 
-            className="btn btn-primary"
-            disabled={isLoading || isEKYCInProgress}
-            style={{ width: '100%', marginBottom: '20px' }}
-          >
-            {isEKYCInProgress ? 'Performing eKYC Verification...' : 
-             isLoading ? 'Creating Account...' : 'Register & Verify'}
-          </button>
         </form>
-        
-        <p style={{ textAlign: 'center', color: '#666' }}>
-          Already have an account? <Link to="/login" style={{ color: '#667eea' }}>Login here</Link>
-        </p>
+
+        {/* Footer Section */}
+        <div className="register-footer">
+          <div className="divider">
+            <span>or</span>
+          </div>
+          
+          <p className="login-prompt">
+            Already have an account?{" "}
+            <Link to="/login" className="login-link">
+              Sign In
+              <span className="link-arrow">→</span>
+            </Link>
+          </p>
+        </div>
       </div>
       
       {showAadhaarSelector && (

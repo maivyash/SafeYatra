@@ -8,6 +8,8 @@ import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
 import { Settings } from "../src/pages/Settings";
 // Assuming you have a Navbar component
+import Navbar from "./components/Navbar";
+import { Settings } from "../src/pages/Settings";// Assuming you have a Navbar component
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -32,9 +34,42 @@ const PublicRoute = ({ children }) => {
 };
 
 function App() {
+  // Video event handlers for better control
+  const handleVideoLoad = (e) => {
+    console.log('Video loaded successfully');
+  };
+
+  const handleVideoError = (e) => {
+    console.error('Video failed to load:', e);
+  };
+
+  const handleVideoCanPlay = (e) => {
+    console.log('Video can start playing');
+    // Try to play the video
+    e.target.play().catch(err => {
+      console.log('Autoplay prevented:', err);
+    });
+  };
+
   return (
     // Remove any <Router> or <BrowserRouter> wrapper from here
     <div className="App">
+      {/* Video Background */}
+      <video
+        className="video-background"
+        autoPlay
+        muted
+        loop
+        playsInline
+        onLoadedData={handleVideoLoad}
+        onError={handleVideoError}
+        onCanPlay={handleVideoCanPlay}
+        preload="auto"
+      >
+        <source src="/videos/bg1.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div className="video-background-overlay"></div>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -63,6 +98,14 @@ function App() {
           }
         />
         <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <Settings />
+            </ProtectedRoute>
+          }
+        />
+           <Route
           path="/settings"
           element={
             <ProtectedRoute>
