@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="container">
         <div className="navbar-content">
           <Link to="/" className="navbar-brand">
-            MERN Auth
+            Safe Yatra
           </Link>
           
           <div className="navbar-nav">
