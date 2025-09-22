@@ -1,12 +1,13 @@
 import React from "react";
-// Make sure you are NOT importing BrowserRouter here
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./contexts/AuthContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import Navbar from "./components/Navbar"; // Assuming you have a Navbar component
+import Navbar from "./components/Navbar";
+import { Settings } from "../src/pages/Settings";
+// Assuming you have a Navbar component
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -91,6 +92,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <Settings />
             </ProtectedRoute>
           }
         />

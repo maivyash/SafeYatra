@@ -13,7 +13,7 @@ import {
   Shield,
   LocateFixed,
 } from "lucide-react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import io from "socket.io-client";
@@ -26,8 +26,8 @@ L.Icon.Default.mergeOptions({
   shadowUrl: require("leaflet/dist/images/marker-shadow.png"),
 });
 
-const SOCKET_SERVER_URL =
-  process.env.REACT_APP_API_URL || "http://localhost:5000";
+const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:5000";
+const SOCKET_SERVER_URL = API_BASE;
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
@@ -35,11 +35,49 @@ const Dashboard = () => {
   const [nearbyUsers, setNearbyUsers] = useState([]);
   const socketRef = useRef();
   const [map, setMap] = useState(null);
+  const [locationName, setLocationName] = useState("Getting location...");
+  const [safetyScore, setSafetyScore] = useState(null);
 
   // Function to recenter map to live location
   const handleRecenter = () => {
     if (map && currentLocation) {
       map.flyTo(currentLocation, 16, { animate: true });
+    }
+  };
+
+  useEffect(() => {
+    // fetch static safety score from backend
+    (async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/data/safety-score`);
+        const json = await res.json();
+        if (json?.success) setSafetyScore(json.score);
+        else setSafetyScore(85);
+      } catch (e) {
+        setSafetyScore(85);
+      }
+    })();
+  }, []);
+
+  // Throttle reverse-geocode calls
+  const lastGeocodeAt = useRef(0);
+  const geocodeThrottleMs = 10000; // 10s
+
+  const fetchLocationName = async (lat, lng) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/data/reverse-geocode`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ lat, lng }),
+      });
+      if (!res.ok) throw new Error("Reverse geocode failed");
+      const json = await res.json();
+      if (json?.success && json.locationName)
+        setLocationName(json.locationName);
+      else setLocationName("Unknown location");
+    } catch (err) {
+      console.error("reverse-geocode error:", err);
+      setLocationName("Could not fetch location");
     }
   };
 
@@ -62,8 +100,15 @@ const Dashboard = () => {
         const newLocation = { lat: latitude, lng: longitude };
         setCurrentLocation(newLocation);
 
+        // Reverse-geocode (throttled)
+        const now = Date.now();
+        if (now - lastGeocodeAt.current > geocodeThrottleMs) {
+          lastGeocodeAt.current = now;
+          fetchLocationName(latitude, longitude);
+        }
+
         // Send location update to the server
-        if (user) {
+        if (user && socketRef.current && socketRef.current.connected) {
           socketRef.current.emit("updateLocation", {
             userId: user._id,
             name: user.name,
@@ -77,9 +122,9 @@ const Dashboard = () => {
 
     return () => {
       navigator.geolocation.clearWatch(watchId);
-      socketRef.current.disconnect();
+      if (socketRef.current) socketRef.current.disconnect();
     };
-  }, []);
+  }, [user]);
 
   return (
     <div className="dashboard-container">
@@ -117,14 +162,14 @@ const Dashboard = () => {
         <div className="status-card">
           <p>Safety Score</p>
           <div className="safety-score">
-            <h3>85/100</h3>
+            <h3>{safetyScore ?? "–"}/100</h3>
             <span>+5%</span>
           </div>
         </div>
         <div className="status-card">
           <p>Location</p>
           <h3 className="location-text">
-            <MapPin size={20} /> San Francisco, CA
+            <MapPin size={20} /> {locationName}
           </h3>
         </div>
       </div>
@@ -162,7 +207,12 @@ const Dashboard = () => {
                     className: "nearby-user-marker",
                   })}
                 >
-                  <Popup>{nearbyUser.name}</Popup>
+                  <Popup>
+                    <div>
+                      <strong>{nearbyUser.name}</strong>
+                      <div>{(nearbyUser.distanceKm ?? "").toString()} km</div>
+                    </div>
+                  </Popup>
                 </Marker>
               ))}
           </MapContainer>
