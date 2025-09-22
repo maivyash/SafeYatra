@@ -8,6 +8,8 @@ import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
 import { Settings } from "../src/pages/Settings";
 // Assuming you have a Navbar component
+import Navbar from "./components/Navbar";
+import { Settings } from "../src/pages/Settings";// Assuming you have a Navbar component
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -96,6 +98,14 @@ function App() {
           }
         />
         <Route
+          path="/settings"
+          element={
+            <ProtectedRoute>
+              <Settings />
+            </ProtectedRoute>
+          }
+        />
+           <Route
           path="/settings"
           element={
             <ProtectedRoute>
