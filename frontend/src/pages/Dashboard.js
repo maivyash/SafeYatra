@@ -131,16 +131,7 @@ const Dashboard = () => {
       {/* Header */}
       <header className="dashboard-header">
         <h1 className="logo">WanderSafe</h1>
-        <div className="flex items-center gap-4">
-          <img
-            src="https://i.pravatar.cc/40"
-            alt="profile"
-            className="profile-img"
-          />
-          <button onClick={logout} className="logout-button">
-            Logout
-          </button>
-        </div>
+    
       </header>
 
       {/* Welcome Section */}

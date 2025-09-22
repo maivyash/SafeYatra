@@ -6,10 +6,9 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
-import { Settings } from "../src/pages/Settings";
+import Settings  from "../src/pages/Settings";
 // Assuming you have a Navbar component
-import Navbar from "./components/Navbar";
-import { Settings } from "../src/pages/Settings";// Assuming you have a Navbar component
+
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -105,14 +104,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-           <Route
-          path="/settings"
-          element={
-            <ProtectedRoute>
-              <Settings />
-            </ProtectedRoute>
-          }
-        />
+      
         {/* Add other routes here */}
       </Routes>
     </div>
