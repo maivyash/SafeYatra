@@ -17,6 +17,7 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import io from "socket.io-client";
+import { Link } from "react-router-dom";
 
 // Fix Leaflet default marker issue
 delete L.Icon.Default.prototype._getIconUrl;
@@ -131,7 +132,6 @@ const Dashboard = () => {
       {/* Header */}
       <header className="dashboard-header">
         <h1 className="logo">WanderSafe</h1>
-    
       </header>
 
       {/* Welcome Section */}
@@ -221,22 +221,33 @@ const Dashboard = () => {
 
       {/* Quick Actions */}
       <div className="actions-grid">
-        <button className="action-btn btn-sos">
-          <AlertTriangle size={20} />
-          SOS
-        </button>
-        <button className="action-btn btn-blue">
-          <Share2 size={20} />
-          Share Live
-        </button>
-        <button className="action-btn btn-blue">
-          <User size={20} />
-          View ID
-        </button>
-        <button className="action-btn btn-blue">
-          <BookOpen size={20} />
-          Itinerary
-        </button>
+        <Link to="/sos" className="action-link">
+          <button className="action-btn btn-sos">
+            <AlertTriangle size={20} />
+            SOS
+          </button>
+        </Link>
+
+        <Link to="/share-live" className="action-link">
+          <button className="action-btn btn-blue">
+            <Share2 size={20} />
+            Share Live
+          </button>
+        </Link>
+
+        <Link to="/view-id" className="action-link">
+          <button className="action-btn btn-blue">
+            <User size={20} />
+            View ID
+          </button>
+        </Link>
+
+        <Link to="/itinerary" className="action-link">
+          <button className="action-btn btn-blue">
+            <BookOpen size={20} />
+            Itinerary
+          </button>
+        </Link>
       </div>
       <h3 className="section-title">Real-time Alerts & Safety Tips</h3>
       <div className="alerts">
