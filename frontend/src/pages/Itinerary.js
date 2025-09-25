@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./CommonPages.css";
 
 const LS_KEY = "user_itinerary_v1";
 
@@ -24,40 +25,28 @@ const Itinerary = () => {
   const remove = (id) => setItems((s) => s.filter((i) => i.id !== id));
 
   return (
-    <div style={{ maxWidth: 820, margin: "24px auto", padding: 16 }}>
-      <h2>Itinerary</h2>
-      <form onSubmit={add} style={{ display: "grid", gap: 8 }}>
-        <input
-          required
-          placeholder="Place name"
-          value={form.place}
-          onChange={(e) => setForm({ ...form, place: e.target.value })}
-        />
-        <input
-          type="date"
-          required
-          value={form.date}
-          onChange={(e) => setForm({ ...form, date: e.target.value })}
-        />
-        <textarea
-          placeholder="Notes"
-          value={form.notes}
-          onChange={(e) => setForm({ ...form, notes: e.target.value })}
-        />
-        <button type="submit">Add to Itinerary</button>
-      </form>
+    <div className="page-container">
+      <h2 className="page-title">Itinerary</h2>
+      <div className="panel">
+        <form onSubmit={add} className="grid-2">
+          <input className="input" required placeholder="Place name" value={form.place} onChange={(e) => setForm({ ...form, place: e.target.value })} />
+          <input className="input" type="date" required value={form.date} onChange={(e) => setForm({ ...form, date: e.target.value })} />
+          <textarea className="textarea" placeholder="Notes" value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} />
+          <button className="btn-primary" type="submit">Add to Itinerary</button>
+        </form>
+      </div>
 
-      <div style={{ marginTop: 16 }}>
+      <div className="panel">
         <h4>Planned visits</h4>
         {items.length === 0 && <div>No itinerary items.</div>}
-        <ul>
+        <ul className="list">
           {items.map((it) => (
-            <li key={it.id} style={{ marginBottom: 12 }}>
+            <li key={it.id} className="list-item" style={{ marginBottom: 8 }}>
               <div>
                 <strong>{it.place}</strong> — {it.date}
+                <div style={{ color: "#64748b" }}>{it.notes}</div>
               </div>
-              <div>{it.notes}</div>
-              <button onClick={() => remove(it.id)}>Delete</button>
+              <button className="btn-danger" onClick={() => remove(it.id)}>Delete</button>
             </li>
           ))}
         </ul>

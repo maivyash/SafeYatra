@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../contexts/AuthContext";
 import axios from "axios";
+import "./CommonPages.css";
 
 const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
@@ -68,87 +69,93 @@ const Settings = () => {
     }
   };
 
-  return (
-    <div
-      className="settings-page"
-      style={{ maxWidth: 820, margin: "24px auto", padding: 16 }}
-    >
-      <h2>Settings</h2>
-      <p>Account: {user?.email}</p>
+  // helpers
+  const avatarUrl = user?.avatar || `https://i.pravatar.cc/120?u=${user?._id || "anon"}`;
+  const maskAadhaar = (aad) => {
+    if (!aad) return "Not provided";
+    const s = aad.toString();
+    const last4 = s.slice(-4);
+    return `XXXX XXXX ${last4}`;
+  };
 
-      <section style={{ marginTop: 16 }}>
+  return (
+    <div className="page-container">
+      <h2 className="page-title">Settings</h2>
+      {/* Account Overview with full user details */}
+      <div className="panel">
+        <div className="row" style={{ justifyContent: "space-between", alignItems: "flex-start" }}>
+          <div className="row" style={{ alignItems: "center" }}>
+            <img src={avatarUrl} alt="avatar" className="avatar" />
+            <div style={{ marginLeft: 12 }}>
+              <h3 style={{ margin: 0 }}>{user?.name || "User"}</h3>
+              <div style={{ color: "#64748b" }}>UID: {user?._id || "—"}</div>
+            </div>
+          </div>
+          <button className="btn-danger" onClick={logout}>Logout</button>
+        </div>
+
+        <div className="grid-2" style={{ marginTop: 12 }}>
+          <div>
+            <small style={{ color: "#64748b" }}>Email</small>
+            <div><strong>{user?.email || "—"}</strong></div>
+          </div>
+          <div>
+            <small style={{ color: "#64748b" }}>Mobile</small>
+            <div><strong>{user?.mobile || "—"}</strong></div>
+          </div>
+          <div>
+            <small style={{ color: "#64748b" }}>Date of Birth</small>
+            <div><strong>{user?.dateOfBirth || "—"}</strong></div>
+          </div>
+          <div>
+            <small style={{ color: "#64748b" }}>Gender</small>
+            <div><strong>{user?.gender || "—"}</strong></div>
+          </div>
+          <div>
+            <small style={{ color: "#64748b" }}>Aadhaar</small>
+            <div><strong>{maskAadhaar(user?.aadhaarNumber)}</strong></div>
+          </div>
+          <div>
+            <small style={{ color: "#64748b" }}>Account Created</small>
+            <div><strong>{user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : "—"}</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <div className="panel">
         <h3>Live Location</h3>
-        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+        <div className="row">
           <label>
-            <input
-              type="checkbox"
-              checked={locationSharing}
-              onChange={toggleLocation}
-            />{" "}
+            <input type="checkbox" checked={locationSharing} onChange={toggleLocation} />{" "}
             Share my live location
           </label>
-          <button
-            onClick={() => savePreference("locationSharing", locationSharing)}
-            disabled={saving}
-          >
-            Save
-          </button>
+          <button className="btn-primary" onClick={() => savePreference("locationSharing", locationSharing)} disabled={saving}>Save</button>
         </div>
-        <small style={{ color: "#666" }}>
-          When enabled the dashboard will send your live location to the server.
-        </small>
-      </section>
+        <small style={{ color: "#64748b" }}>When enabled the dashboard will send your live location to the server.</small>
+      </div>
 
-      <section style={{ marginTop: 16 }}>
+      <div className="panel">
         <h3>IoT Integration</h3>
-        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
+        <div className="row">
           <label>
             <input type="checkbox" checked={iotEnabled} onChange={toggleIot} />{" "}
             Enable IoT (Smart band)
           </label>
-          <button
-            onClick={() => savePreference("iotEnabled", iotEnabled)}
-            disabled={saving}
-          >
-            Save
-          </button>
+          <button className="btn-primary" onClick={() => savePreference("iotEnabled", iotEnabled)} disabled={saving}>Save</button>
         </div>
-        <small style={{ color: "#666" }}>
-          Toggle IoT integration. Device pairing handled separately.
-        </small>
-      </section>
+        <small style={{ color: "#64748b" }}>Toggle IoT integration. Device pairing handled separately.</small>
+      </div>
 
-      <section style={{ marginTop: 16 }}>
+      <div className="panel">
         <h3>Safety Score</h3>
-        <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
-          <div>
-            Current score: <strong>{safetyScore ?? "—"}</strong>
-          </div>
-          <button onClick={refreshSafetyScore} disabled={saving}>
-            Refresh
-          </button>
+        <div className="row">
+          <div>Current score: <strong>{safetyScore ?? "—"}</strong></div>
+          <button className="btn-primary" onClick={refreshSafetyScore} disabled={saving}>Refresh</button>
         </div>
-        <small style={{ color: "#666" }}>
-          Safety score currently provided by backend (static 85).
-        </small>
-      </section>
+        <small style={{ color: "#64748b" }}>Safety score currently provided by backend (static 85).</small>
+      </div>
 
-      <section style={{ marginTop: 16 }}>
-        <button
-          onClick={logout}
-          style={{
-            background: "#ef4444",
-            color: "#fff",
-            padding: "8px 12px",
-            border: "none",
-            borderRadius: 6,
-          }}
-        >
-          Logout
-        </button>
-      </section>
-
-      {error && <div style={{ color: "red", marginTop: 12 }}>{error}</div>}
+      {error && <div style={{ color: "#ef4444", marginTop: 12 }}>{error}</div>}
     </div>
   );
 };

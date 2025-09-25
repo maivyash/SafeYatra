@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useAuth } from "../contexts/AuthContext";
+import "./CommonPages.css";
 
 const ViewID = () => {
   const { user } = useAuth();
@@ -16,26 +17,46 @@ const ViewID = () => {
     return `XXXX XXXX ${last4}`;
   };
 
+  const imgRef = useRef(null);
+
+  const copyQrImage = async () => {
+    try {
+      const img = imgRef.current;
+      if (!img) return;
+      const res = await fetch(img.src);
+      const blob = await res.blob();
+      await navigator.clipboard.write([
+        new window.ClipboardItem({ [blob.type]: blob })
+      ]);
+      alert("QR code copied to clipboard");
+    } catch (e) {
+      try {
+        // Fallback: open in new tab if ClipboardItem not supported
+        window.open(qrUrl, "_blank");
+      } catch {}
+    }
+  };
+
   return (
-    <div style={{ maxWidth: 520, margin: "24px auto", padding: 16 }}>
-      <h2>View ID</h2>
-      <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
-        <img
-          src={avatarUrl}
-          alt="avatar"
-          style={{ width: 120, height: 120, borderRadius: 12 }}
-        />
+    <div className="page-container" style={{ maxWidth: 700 }}>
+      <h2 className="page-title">Digital ID</h2>
+      <div className="panel" style={{ display: "flex", gap: 20, alignItems: "center" }}>
+        <img src={avatarUrl} alt="avatar" className="avatar" />
         <div>
-          <h3>{user?.name ?? "User"}</h3>
+          <h3 style={{ margin: 0 }}>{user?.name ?? "User"}</h3>
           <div>Email: {user?.email ?? "—"}</div>
           <div>Mobile: {user?.mobile ?? "—"}</div>
           <div>Aadhaar: {maskAadhaar(user?.aadhaarNumber)}</div>
         </div>
       </div>
 
-      <div style={{ marginTop: 20 }}>
-        <h4>QR (UID)</h4>
-        <img src={qrUrl} alt="qr" style={{ width: 150, height: 150 }} />
+      <div className="panel" style={{ display: "flex", gap: 20, alignItems: "center" }}>
+        <div>
+          <h4 style={{ margin: 0 }}>QR (UID)</h4>
+          <small style={{ color: "#64748b" }}>Scan to verify identity</small>
+        </div>
+        <img ref={imgRef} src={qrUrl} alt="qr" style={{ width: 150, height: 150 }} />
+        <button className="btn-primary" onClick={copyQrImage}>Copy QR</button>
       </div>
     </div>
   );

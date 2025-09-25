@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
+import "./CommonPages.css";
 
 const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
@@ -37,25 +38,15 @@ const SOS = () => {
   };
 
   return (
-    <div style={{ maxWidth: 820, margin: "24px auto", padding: 16 }}>
-      <h2>SOS</h2>
-      <p>Press the button below to send an SOS with your current location.</p>
-      <button
-        onClick={sendSOS}
-        disabled={sending}
-        style={{
-          background: "#ef4444",
-          color: "#fff",
-          padding: "12px 18px",
-          border: "none",
-          borderRadius: 8,
-          fontWeight: 700,
-          cursor: "pointer",
-        }}
-      >
-        {sending ? "Sending..." : "Send SOS"}
-      </button>
-      {status && <div style={{ marginTop: 12 }}>{status}</div>}
+    <div className="page-container">
+      <h2 className="page-title">SOS</h2>
+      <div className="panel">
+        <p>Press the button below to send an SOS with your current location.</p>
+        <button className="btn-danger" onClick={sendSOS} disabled={sending}>
+          {sending ? "Sending..." : "Send SOS"}
+        </button>
+        {status && <div style={{ marginTop: 12 }}>{status}</div>}
+      </div>
     </div>
   );
 };

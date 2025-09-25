@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuth } from "../contexts/AuthContext";
+import "./CommonPages.css";
 
 const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:5000";
 const LS_KEY = "shareLiveContacts_v1";
@@ -48,60 +49,34 @@ const ShareLive = () => {
   };
 
   return (
-    <div style={{ maxWidth: 820, margin: "24px auto", padding: 16 }}>
-      <h2>Share Live</h2>
-      <form
-        onSubmit={addContact}
-        style={{ display: "flex", gap: 8, marginBottom: 12 }}
-      >
-        <input
-          required
-          placeholder="Name"
-          value={form.name}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-        />
-        <input
-          required
-          placeholder="Email"
-          value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-        />
-        <input
-          required
-          placeholder="Phone"
-          value={form.phone}
-          onChange={(e) => setForm({ ...form, phone: e.target.value })}
-        />
-        <button type="submit">Add</button>
-      </form>
-
-      <div>
-        <h4>Contacts to share with</h4>
-        {contacts.length === 0 && <div>No contacts yet.</div>}
-        <ul>
-          {contacts.map((c) => (
-            <li
-              key={c.id}
-              style={{
-                display: "flex",
-                gap: 12,
-                alignItems: "center",
-                marginBottom: 8,
-              }}
-            >
-              <div>
-                <strong>{c.name}</strong> • {c.email} • {c.phone}
-              </div>
-              <button onClick={() => remove(c.id)}>Remove</button>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div style={{ marginTop: 12 }}>
-        <button onClick={shareNow} disabled={sharing || contacts.length === 0}>
-          {sharing ? "Sharing..." : "Share Now"}
-        </button>
+    <div className="page-container">
+      <h2 className="page-title">Share Live</h2>
+      <div className="panel">
+        <form onSubmit={addContact} className="grid-2" style={{ marginBottom: 12 }}>
+          <input className="input" required placeholder="Name" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+          <input className="input" required placeholder="Email" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+          <input className="input" required placeholder="Phone" value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} />
+          <button type="submit" className="btn-primary">Add</button>
+        </form>
+        <div>
+          <h4>Contacts to share with</h4>
+          {contacts.length === 0 && <div>No contacts yet.</div>}
+          <ul className="list">
+            {contacts.map((c) => (
+              <li key={c.id} className="list-item" style={{ marginBottom: 8 }}>
+                <div>
+                  <strong>{c.name}</strong> • {c.email} • {c.phone}
+                </div>
+                <button className="btn-danger" onClick={() => remove(c.id)}>Remove</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div style={{ marginTop: 12 }}>
+          <button className="btn-primary" onClick={shareNow} disabled={sharing || contacts.length === 0}>
+            {sharing ? "Sharing..." : "Share Now"}
+          </button>
+        </div>
       </div>
     </div>
   );
