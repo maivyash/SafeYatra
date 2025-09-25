@@ -1,0 +1,1360 @@
+[
+  {
+    "area_id": "PUNE_A1",
+    "area_name": "Shivajinagar",
+    "polygon_coords": [
+      [18.5305, 73.847],
+      [18.5325, 73.855],
+      [18.528, 73.86],
+      [18.525, 73.852]
+    ],
+    "crime_count": 42,
+    "population": 12000,
+    "police_presence": "high",
+    "CCTV_density": 15,
+    "last_incident": "2025-09-10",
+    "safety_score": 72
+  },
+
+  {
+    "area_id": "AKURDI_A1",
+    "area_name": "Akurdi Railway Station Area",
+    "polygon_coords": [
+      [18.644, 73.758],
+      [18.647, 73.764],
+      [18.641, 73.768],
+      [18.638, 73.761]
+    ],
+    "crime_count": 18,
+    "population": 8000,
+    "police_presence": "medium",
+    "CCTV_density": 10,
+    "last_incident": "2025-09-12",
+    "safety_score": 74
+  },
+  {
+    "area_id": "AKURDI_A2",
+    "area_name": "Akurdi MIDC Industrial Area",
+    "polygon_coords": [
+      [18.654, 73.754],
+      [18.659, 73.762],
+      [18.653, 73.768],
+      [18.648, 73.76]
+    ],
+    "crime_count": 27,
+    "population": 6000,
+    "police_presence": "low",
+    "CCTV_density": 8,
+    "last_incident": "2025-08-30",
+    "safety_score": 65
+  },
+  {
+    "area_id": "AKURDI_A3",
+    "area_name": "Pradhikaran Sector 26",
+    "polygon_coords": [
+      [18.651, 73.771],
+      [18.655, 73.778],
+      [18.649, 73.782],
+      [18.645, 73.774]
+    ],
+    "crime_count": 12,
+    "population": 7000,
+    "police_presence": "high",
+    "CCTV_density": 20,
+    "last_incident": "2025-09-15",
+    "safety_score": 82
+  },
+  {
+    "area_id": "AKURDI_A4",
+    "area_name": "Bijlinagar Residential Area",
+    "polygon_coords": [
+      [18.636, 73.752],
+      [18.64, 73.759],
+      [18.635, 73.764],
+      [18.631, 73.756]
+    ],
+    "crime_count": 22,
+    "population": 9000,
+    "police_presence": "medium",
+    "CCTV_density": 12,
+    "last_incident": "2025-09-05",
+    "safety_score": 70
+  },
+  {
+    "area_id": "AKURDI_A5",
+    "area_name": "Walhekarwadi",
+    "polygon_coords": [
+      [18.642, 73.744],
+      [18.647, 73.751],
+      [18.641, 73.755],
+      [18.637, 73.749]
+    ],
+    "crime_count": 16,
+    "population": 7500,
+    "police_presence": "medium",
+    "CCTV_density": 14,
+    "last_incident": "2025-09-14",
+    "safety_score": 76
+  },
+
+  {
+    "area_id": "AKURDI_A6",
+    "area_name": "Akurdi Police Colony",
+    "polygon_coords": [
+      [18.649, 73.765],
+      [18.652, 73.77],
+      [18.648, 73.773],
+      [18.645, 73.768]
+    ],
+    "crime_count": 8,
+    "population": 5000,
+    "police_presence": "high",
+    "CCTV_density": 22,
+    "last_incident": "2025-09-16",
+    "safety_score": 88
+  },
+  {
+    "area_id": "AKURDI_A7",
+    "area_name": "Sector 27 Pradhikaran",
+    "polygon_coords": [
+      [18.656, 73.775],
+      [18.661, 73.781],
+      [18.654, 73.785],
+      [18.65, 73.779]
+    ],
+    "crime_count": 14,
+    "population": 6200,
+    "police_presence": "medium",
+    "CCTV_density": 16,
+    "last_incident": "2025-09-13",
+    "safety_score": 78
+  },
+  {
+    "area_id": "AKURDI_A8",
+    "area_name": "Dattawadi Akurdi",
+    "polygon_coords": [
+      [18.633, 73.76],
+      [18.638, 73.766],
+      [18.632, 73.771],
+      [18.628, 73.764]
+    ],
+    "crime_count": 20,
+    "population": 8700,
+    "police_presence": "low",
+    "CCTV_density": 9,
+    "last_incident": "2025-09-07",
+    "safety_score": 67
+  },
+  {
+    "area_id": "AKURDI_A9",
+    "area_name": "Nigdi Chowk Side",
+    "polygon_coords": [
+      [18.664, 73.757],
+      [18.668, 73.764],
+      [18.662, 73.768],
+      [18.658, 73.762]
+    ],
+    "crime_count": 32,
+    "population": 11000,
+    "police_presence": "medium",
+    "CCTV_density": 12,
+    "last_incident": "2025-09-15",
+    "safety_score": 62
+  },
+  {
+    "area_id": "AKURDI_A10",
+    "area_name": "Chinchwad Junction Border",
+    "polygon_coords": [
+      [18.635, 73.74],
+      [18.64, 73.746],
+      [18.635, 73.751],
+      [18.63, 73.744]
+    ],
+    "crime_count": 25,
+    "population": 9500,
+    "police_presence": "low",
+    "CCTV_density": 11,
+    "last_incident": "2025-09-10",
+    "safety_score": 69
+  },
+  {
+    "area_id": "PUNE_A2",
+    "area_name": "Kothrud",
+    "polygon_coords": [
+      [18.509, 73.807],
+      [18.514, 73.815],
+      [18.508, 73.822],
+      [18.503, 73.814]
+    ],
+    "crime_count": 28,
+    "population": 18000,
+    "police_presence": "medium",
+    "CCTV_density": 10,
+    "last_incident": "2025-09-14",
+    "safety_score": 65
+  },
+  {
+    "area_id": "PUNE_A222",
+    "area_name": "Kothrud",
+    "polygon_coords": [
+      [18.509, 73.807],
+      [18.514, 73.815],
+      [18.508, 73.822],
+      [18.503, 73.814]
+    ],
+    "crime_count": 28,
+    "population": 18000,
+    "police_presence": "medium",
+    "CCTV_density": 10,
+    "last_incident": "2025-09-14",
+    "safety_score": 65
+  },
+  {
+    "area_id": "PUNE_A3",
+    "area_name": "Hinjewadi",
+    "polygon_coords": [
+      [18.595, 73.7],
+      [18.6, 73.71],
+      [18.59, 73.72],
+      [18.585, 73.705]
+    ],
+    "crime_count": 12,
+    "population": 25000,
+    "police_presence": "high",
+    "CCTV_density": 22,
+    "last_incident": "2025-09-05",
+    "safety_score": 85
+  },
+  {
+    "area_id": "PUNE_A4",
+    "area_name": "Koregaon Park",
+    "polygon_coords": [
+      [18.536, 73.885],
+      [18.54, 73.89],
+      [18.534, 73.896],
+      [18.53, 73.889]
+    ],
+    "crime_count": 60,
+    "population": 10000,
+    "police_presence": "low",
+    "CCTV_density": 5,
+    "last_incident": "2025-09-16",
+    "safety_score": 40
+  },
+  {
+    "area_id": "PUNE_A5",
+    "area_name": "Hadapsar",
+    "polygon_coords": [
+      [18.495, 73.915],
+      [18.5, 73.925],
+      [18.492, 73.93],
+      [18.487, 73.918]
+    ],
+    "crime_count": 75,
+    "population": 30000,
+    "police_presence": "medium",
+    "CCTV_density": 12,
+    "last_incident": "2025-09-12",
+    "safety_score": 55
+  },
+  {
+    "area_id": "PUNE_A6",
+    "area_name": "Viman Nagar",
+    "polygon_coords": [
+      [18.565, 73.91],
+      [18.57, 73.92],
+      [18.562, 73.925],
+      [18.557, 73.915]
+    ],
+    "crime_count": 20,
+    "population": 15000,
+    "police_presence": "high",
+    "CCTV_density": 18,
+    "last_incident": "2025-09-08",
+    "safety_score": 80
+  },
+  {
+    "area_id": "PUNE_A7",
+    "area_name": "Baner",
+    "polygon_coords": [
+      [18.56, 73.78],
+      [18.565, 73.79],
+      [18.558, 73.795],
+      [18.553, 73.785]
+    ],
+    "crime_count": 35,
+    "population": 22000,
+    "police_presence": "medium",
+    "CCTV_density": 14,
+    "last_incident": "2025-09-15",
+    "safety_score": 68
+  },
+  {
+    "area_id": "PUNE_A8",
+    "area_name": "Swargate",
+    "polygon_coords": [
+      [18.495, 73.865],
+      [18.5, 73.87],
+      [18.492, 73.875],
+      [18.488, 73.868]
+    ],
+    "crime_count": 95,
+    "population": 27000,
+    "police_presence": "low",
+    "CCTV_density": 7,
+    "last_incident": "2025-09-17",
+    "safety_score": 38
+  },
+  {
+    "area_id": "PUNE_A9",
+    "area_name": "Pimpri",
+    "polygon_coords": [
+      [18.62, 73.82],
+      [18.625, 73.83],
+      [18.618, 73.835],
+      [18.613, 73.825]
+    ],
+    "crime_count": 50,
+    "population": 35000,
+    "police_presence": "medium",
+    "CCTV_density": 11,
+    "last_incident": "2025-09-11",
+    "safety_score": 60
+  },
+  {
+    "area_id": "PUNE_A10",
+    "area_name": "Camp",
+    "polygon_coords": [
+      [18.52, 73.88],
+      [18.525, 73.885],
+      [18.518, 73.89],
+      [18.513, 73.882]
+    ],
+    "crime_count": 40,
+    "population": 16000,
+    "police_presence": "high",
+    "CCTV_density": 16,
+    "last_incident": "2025-09-13",
+    "safety_score": 75
+  },
+  {
+    "area_id": "PUNE_A11",
+    "area_name": "Wakad",
+    "polygon_coords": [
+      [18.598, 73.75],
+      [18.603, 73.76],
+      [18.596, 73.765],
+      [18.591, 73.755]
+    ],
+    "crime_count": 25,
+    "population": 28000,
+    "police_presence": "high",
+    "CCTV_density": 20,
+    "last_incident": "2025-09-10",
+    "safety_score": 78
+  },
+  {
+    "area_id": "PUNE_A12",
+    "area_name": "Aundh",
+    "polygon_coords": [
+      [18.56, 73.81],
+      [18.565, 73.82],
+      [18.558, 73.825],
+      [18.553, 73.815]
+    ],
+    "crime_count": 33,
+    "population": 24000,
+    "police_presence": "medium",
+    "CCTV_density": 13,
+    "last_incident": "2025-09-12",
+    "safety_score": 66
+  },
+  {
+    "area_id": "PUNE_A13",
+    "area_name": "Yerwada",
+    "polygon_coords": [
+      [18.55, 73.89],
+      [18.555, 73.9],
+      [18.548, 73.905],
+      [18.543, 73.895]
+    ],
+    "crime_count": 70,
+    "population": 32000,
+    "police_presence": "low",
+    "CCTV_density": 8,
+    "last_incident": "2025-09-14",
+    "safety_score": 42
+  },
+  {
+    "area_id": "PUNE_A14",
+    "area_name": "Magarpatta",
+    "polygon_coords": [
+      [18.51, 73.92],
+      [18.515, 73.93],
+      [18.508, 73.935],
+      [18.503, 73.925]
+    ],
+    "crime_count": 15,
+    "population": 18000,
+    "police_presence": "high",
+    "CCTV_density": 19,
+    "last_incident": "2025-09-11",
+    "safety_score": 83
+  },
+  {
+    "area_id": "PUNE_A15",
+    "area_name": "Warje",
+    "polygon_coords": [
+      [18.48, 73.8],
+      [18.485, 73.81],
+      [18.478, 73.815],
+      [18.473, 73.805]
+    ],
+    "crime_count": 45,
+    "population": 22000,
+    "police_presence": "medium",
+    "CCTV_density": 12,
+    "last_incident": "2025-09-09",
+    "safety_score": 58
+  },
+  {
+    "area_id": "PUNE_A16",
+    "area_name": "Bavdhan",
+    "polygon_coords": [
+      [18.52, 73.78],
+      [18.525, 73.79],
+      [18.518, 73.795],
+      [18.513, 73.785]
+    ],
+    "crime_count": 18,
+    "population": 14000,
+    "police_presence": "medium",
+    "CCTV_density": 14,
+    "last_incident": "2025-09-07",
+    "safety_score": 74
+  },
+  {
+    "area_id": "PUNE_A17",
+    "area_name": "Karve Nagar",
+    "polygon_coords": [
+      [18.495, 73.82],
+      [18.5, 73.83],
+      [18.493, 73.835],
+      [18.488, 73.825]
+    ],
+    "crime_count": 29,
+    "population": 20000,
+    "police_presence": "medium",
+    "CCTV_density": 11,
+    "last_incident": "2025-09-13",
+    "safety_score": 64
+  },
+  {
+    "area_id": "PUNE_A18",
+    "area_name": "Vadgaon Sheri",
+    "polygon_coords": [
+      [18.54, 73.91],
+      [18.545, 73.92],
+      [18.538, 73.925],
+      [18.533, 73.915]
+    ],
+    "crime_count": 50,
+    "population": 27000,
+    "police_presence": "low",
+    "CCTV_density": 9,
+    "last_incident": "2025-09-15",
+    "safety_score": 48
+  },
+  {
+    "area_id": "PUNE_A19",
+    "area_name": "Pashan",
+    "polygon_coords": [
+      [18.54, 73.79],
+      [18.545, 73.8],
+      [18.538, 73.805],
+      [18.533, 73.795]
+    ],
+    "crime_count": 23,
+    "population": 15000,
+    "police_presence": "high",
+    "CCTV_density": 16,
+    "last_incident": "2025-09-06",
+    "safety_score": 79
+  },
+  {
+    "area_id": "PUNE_A20",
+    "area_name": "Dhankawadi",
+    "polygon_coords": [
+      [18.47, 73.86],
+      [18.475, 73.87],
+      [18.468, 73.875],
+      [18.463, 73.865]
+    ],
+    "crime_count": 55,
+    "population": 21000,
+    "police_presence": "low",
+    "CCTV_density": 10,
+    "last_incident": "2025-09-16",
+    "safety_score": 52
+  },
+  {
+    "area_id": "PUNE_A21",
+    "area_name": "Bibwewadi",
+    "polygon_coords": [
+      [18.47, 73.87],
+      [18.475, 73.88],
+      [18.468, 73.885],
+      [18.463, 73.875]
+    ],
+    "crime_count": 44,
+    "population": 26000,
+    "police_presence": "medium",
+    "CCTV_density": 12,
+    "last_incident": "2025-09-12",
+    "safety_score": 59
+  },
+  {
+    "area_id": "PUNE_A22",
+    "area_name": "Swargate",
+    "polygon_coords": [
+      [18.51, 73.86],
+      [18.515, 73.87],
+      [18.508, 73.875],
+      [18.503, 73.865]
+    ],
+    "crime_count": 72,
+    "population": 33000,
+    "police_presence": "low",
+    "CCTV_density": 7,
+    "last_incident": "2025-09-15",
+    "safety_score": 41
+  },
+  {
+    "area_id": "PUNE_A23",
+    "area_name": "Camp",
+    "polygon_coords": [
+      [18.52, 73.88],
+      [18.525, 73.89],
+      [18.518, 73.895],
+      [18.513, 73.885]
+    ],
+    "crime_count": 61,
+    "population": 28000,
+    "police_presence": "medium",
+    "CCTV_density": 11,
+    "last_incident": "2025-09-14",
+    "safety_score": 54
+  },
+  {
+    "area_id": "PUNE_A24",
+    "area_name": "Sinhagad Road",
+    "polygon_coords": [
+      [18.46, 73.82],
+      [18.465, 73.83],
+      [18.458, 73.835],
+      [18.453, 73.825]
+    ],
+    "crime_count": 37,
+    "population": 24000,
+    "police_presence": "medium",
+    "CCTV_density": 14,
+    "last_incident": "2025-09-13",
+    "safety_score": 68
+  },
+  {
+    "area_id": "PUNE_A25",
+    "area_name": "Baner",
+    "polygon_coords": [
+      [18.56, 73.78],
+      [18.565, 73.79],
+      [18.558, 73.795],
+      [18.553, 73.785]
+    ],
+    "crime_count": 22,
+    "population": 20000,
+    "police_presence": "high",
+    "CCTV_density": 17,
+    "last_incident": "2025-09-08",
+    "safety_score": 81
+  },
+  {
+    "area_id": "PUNE_A26",
+    "area_name": "Balewadi",
+    "polygon_coords": [
+      [18.57, 73.77],
+      [18.575, 73.78],
+      [18.568, 73.785],
+      [18.563, 73.775]
+    ],
+    "crime_count": 19,
+    "population": 18000,
+    "police_presence": "high",
+    "CCTV_density": 18,
+    "last_incident": "2025-09-11",
+    "safety_score": 82
+  },
+  {
+    "area_id": "PUNE_A27",
+    "area_name": "Viman Nagar",
+    "polygon_coords": [
+      [18.57, 73.91],
+      [18.575, 73.92],
+      [18.568, 73.925],
+      [18.563, 73.915]
+    ],
+    "crime_count": 48,
+    "population": 26000,
+    "police_presence": "medium",
+    "CCTV_density": 13,
+    "last_incident": "2025-09-13",
+    "safety_score": 61
+  },
+  {
+    "area_id": "PUNE_A28",
+    "area_name": "Lohegaon",
+    "polygon_coords": [
+      [18.6, 73.93],
+      [18.605, 73.94],
+      [18.598, 73.945],
+      [18.593, 73.935]
+    ],
+    "crime_count": 32,
+    "population": 19000,
+    "police_presence": "medium",
+    "CCTV_density": 12,
+    "last_incident": "2025-09-09",
+    "safety_score": 67
+  },
+  {
+    "area_id": "PUNE_A29",
+    "area_name": "Kondhwa",
+    "polygon_coords": [
+      [18.47, 73.91],
+      [18.475, 73.92],
+      [18.468, 73.925],
+      [18.463, 73.915]
+    ],
+    "crime_count": 62,
+    "population": 31000,
+    "police_presence": "low",
+    "CCTV_density": 8,
+    "last_incident": "2025-09-14",
+    "safety_score": 46
+  },
+  {
+    "area_id": "PUNE_A30",
+    "area_name": "Wanowrie",
+    "polygon_coords": [
+      [18.49, 73.9],
+      [18.495, 73.91],
+      [18.488, 73.915],
+      [18.483, 73.905]
+    ],
+    "crime_count": 40,
+    "population": 25000,
+    "police_presence": "medium",
+    "CCTV_density": 11,
+    "last_incident": "2025-09-10",
+    "safety_score": 63
+  },
+  {
+    "id": 31,
+    "area": "Vadgaon Sheri",
+    "coordinates": [73.923, 18.5534],
+    "crime_index": 45,
+    "safety_score": 55
+  },
+  {
+    "id": 32,
+    "area": "Yerwada",
+    "coordinates": [73.8902, 18.5565],
+    "crime_index": 58,
+    "safety_score": 42
+  },
+  {
+    "id": 33,
+    "area": "Kothrud Depot",
+    "coordinates": [73.807, 18.5079],
+    "crime_index": 34,
+    "safety_score": 66
+  },
+  {
+    "id": 34,
+    "area": "Erandwane",
+    "coordinates": [73.8282, 18.5096],
+    "crime_index": 38,
+    "safety_score": 62
+  },
+  {
+    "id": 35,
+    "area": "Pashan",
+    "coordinates": [73.7929, 18.5348],
+    "crime_index": 33,
+    "safety_score": 67
+  },
+  {
+    "id": 36,
+    "area": "Balewadi",
+    "coordinates": [73.7794, 18.5642],
+    "crime_index": 37,
+    "safety_score": 63
+  },
+  {
+    "id": 37,
+    "area": "Kalyani Nagar",
+    "coordinates": [73.9086, 18.553],
+    "crime_index": 42,
+    "safety_score": 58
+  },
+  {
+    "id": 38,
+    "area": "Koregaon Park",
+    "coordinates": [73.8922, 18.5362],
+    "crime_index": 50,
+    "safety_score": 50
+  },
+  {
+    "id": 39,
+    "area": "Camp",
+    "coordinates": [73.8796, 18.5167],
+    "crime_index": 53,
+    "safety_score": 47
+  },
+  {
+    "id": 40,
+    "area": "Bund Garden",
+    "coordinates": [73.8732, 18.5368],
+    "crime_index": 41,
+    "safety_score": 59
+  },
+  {
+    "id": 41,
+    "area": "Senapati Bapat Road",
+    "coordinates": [73.8298, 18.5297],
+    "crime_index": 39,
+    "safety_score": 61
+  },
+  {
+    "id": 42,
+    "area": "Shivajinagar",
+    "coordinates": [73.8499, 18.5306],
+    "crime_index": 52,
+    "safety_score": 48
+  },
+  {
+    "id": 43,
+    "area": "Deccan Gymkhana",
+    "coordinates": [73.8422, 18.5163],
+    "crime_index": 44,
+    "safety_score": 56
+  },
+  {
+    "id": 44,
+    "area": "Swargate",
+    "coordinates": [73.862, 18.5016],
+    "crime_index": 57,
+    "safety_score": 43
+  },
+  {
+    "id": 45,
+    "area": "Bibvewadi",
+    "coordinates": [73.8663, 18.4783],
+    "crime_index": 61,
+    "safety_score": 39
+  },
+  {
+    "id": 46,
+    "area": "Dhankawadi",
+    "coordinates": [73.8534, 18.4672],
+    "crime_index": 55,
+    "safety_score": 45
+  },
+  {
+    "id": 47,
+    "area": "Ambegaon",
+    "coordinates": [73.8423, 18.4579],
+    "crime_index": 60,
+    "safety_score": 40
+  },
+  {
+    "id": 48,
+    "area": "Sinhagad Road",
+    "coordinates": [73.8288, 18.4664],
+    "crime_index": 62,
+    "safety_score": 38
+  },
+  {
+    "id": 49,
+    "area": "Warje",
+    "coordinates": [73.8057, 18.4893],
+    "crime_index": 47,
+    "safety_score": 53
+  },
+  {
+    "id": 50,
+    "area": "Bavdhan",
+    "coordinates": [73.7696, 18.5169],
+    "crime_index": 35,
+    "safety_score": 65
+  },
+  {
+    "id": 51,
+    "area": "Khadki",
+    "coordinates": [73.8387, 18.5634],
+    "crime_index": 46,
+    "safety_score": 54
+  },
+  {
+    "id": 52,
+    "area": "Bhosari",
+    "coordinates": [73.8533, 18.6298],
+    "crime_index": 59,
+    "safety_score": 41
+  },
+  {
+    "id": 53,
+    "area": "Nigdi",
+    "coordinates": [73.759, 18.6517],
+    "crime_index": 52,
+    "safety_score": 48
+  },
+  {
+    "id": 54,
+    "area": "Akurdi",
+    "coordinates": [73.7648, 18.6433],
+    "crime_index": 48,
+    "safety_score": 52
+  },
+  {
+    "id": 55,
+    "area": "Chinchwad",
+    "coordinates": [73.7899, 18.6298],
+    "crime_index": 50,
+    "safety_score": 50
+  },
+  {
+    "id": 56,
+    "area": "Pimpri",
+    "coordinates": [73.8076, 18.6293],
+    "crime_index": 54,
+    "safety_score": 46
+  },
+  {
+    "id": 57,
+    "area": "Ravet",
+    "coordinates": [73.7405, 18.665],
+    "crime_index": 42,
+    "safety_score": 58
+  },
+  {
+    "id": 58,
+    "area": "Punawale",
+    "coordinates": [73.7382, 18.6155],
+    "crime_index": 41,
+    "safety_score": 59
+  },
+  {
+    "id": 59,
+    "area": "Wakad",
+    "coordinates": [73.7707, 18.591],
+    "crime_index": 45,
+    "safety_score": 55
+  },
+  {
+    "id": 60,
+    "area": "Kalewadi",
+    "coordinates": [73.8029, 18.6181],
+    "crime_index": 56,
+    "safety_score": 44
+  },
+  {
+    "id": 61,
+    "area": "Dighi",
+    "coordinates": [73.8876, 18.6187],
+    "crime_index": 58,
+    "safety_score": 42
+  },
+  {
+    "id": 62,
+    "area": "Alandi",
+    "coordinates": [73.899, 18.6785],
+    "crime_index": 60,
+    "safety_score": 40
+  },
+  {
+    "id": 63,
+    "area": "Charholi",
+    "coordinates": [73.8763, 18.6461],
+    "crime_index": 55,
+    "safety_score": 45
+  },
+  {
+    "id": 64,
+    "area": "Dhanori",
+    "coordinates": [73.9084, 18.5829],
+    "crime_index": 51,
+    "safety_score": 49
+  },
+  {
+    "id": 65,
+    "area": "Lohegaon",
+    "coordinates": [73.9275, 18.6005],
+    "crime_index": 53,
+    "safety_score": 47
+  },
+  {
+    "id": 66,
+    "area": "Kharadi",
+    "coordinates": [73.9503, 18.5514],
+    "crime_index": 47,
+    "safety_score": 53
+  },
+  {
+    "id": 67,
+    "area": "Hadapsar",
+    "coordinates": [73.926, 18.5009],
+    "crime_index": 61,
+    "safety_score": 39
+  },
+  {
+    "id": 68,
+    "area": "Fursungi",
+    "coordinates": [73.9716, 18.4827],
+    "crime_index": 64,
+    "safety_score": 36
+  },
+  {
+    "id": 69,
+    "area": "Uruli Devachi",
+    "coordinates": [74.0091, 18.4551],
+    "crime_index": 63,
+    "safety_score": 37
+  },
+  {
+    "id": 70,
+    "area": "Kondhwa",
+    "coordinates": [73.9027, 18.4719],
+    "crime_index": 57,
+    "safety_score": 43
+  },
+  {
+    "id": 71,
+    "area": "Bibwewadi",
+    "coordinates": [73.8669, 18.4822],
+    "crime_index": 55,
+    "safety_score": 45
+  },
+  {
+    "id": 72,
+    "area": "Dhankawadi",
+    "coordinates": [73.8532, 18.4635],
+    "crime_index": 52,
+    "safety_score": 48
+  },
+  {
+    "id": 73,
+    "area": "Ambegaon",
+    "coordinates": [73.8287, 18.4578],
+    "crime_index": 49,
+    "safety_score": 51
+  },
+  {
+    "id": 74,
+    "area": "Narhe",
+    "coordinates": [73.8078, 18.4571],
+    "crime_index": 53,
+    "safety_score": 47
+  },
+  {
+    "id": 75,
+    "area": "Vadgaon Budruk",
+    "coordinates": [73.8213, 18.4715],
+    "crime_index": 47,
+    "safety_score": 53
+  },
+  {
+    "id": 76,
+    "area": "Sinhagad Road",
+    "coordinates": [73.8296, 18.4788],
+    "crime_index": 50,
+    "safety_score": 50
+  },
+  {
+    "id": 77,
+    "area": "Manik Bagh",
+    "coordinates": [73.8388, 18.4931],
+    "crime_index": 46,
+    "safety_score": 54
+  },
+  {
+    "id": 78,
+    "area": "Parvati",
+    "coordinates": [73.8566, 18.4959],
+    "crime_index": 48,
+    "safety_score": 52
+  },
+  {
+    "id": 79,
+    "area": "Sahakar Nagar",
+    "coordinates": [73.8539, 18.5025],
+    "crime_index": 51,
+    "safety_score": 49
+  },
+  {
+    "id": 80,
+    "area": "Salisbury Park",
+    "coordinates": [73.8746, 18.4998],
+    "crime_index": 44,
+    "safety_score": 56
+  },
+  {
+    "id": 81,
+    "area": "Camp",
+    "coordinates": [73.8851, 18.5124],
+    "crime_index": 59,
+    "safety_score": 41
+  },
+  {
+    "id": 82,
+    "area": "MG Road",
+    "coordinates": [73.8909, 18.5108],
+    "crime_index": 58,
+    "safety_score": 42
+  },
+  {
+    "id": 83,
+    "area": "Koregaon Park Annexe",
+    "coordinates": [73.9051, 18.5369],
+    "crime_index": 54,
+    "safety_score": 46
+  },
+  {
+    "id": 84,
+    "area": "Mundhwa",
+    "coordinates": [73.934, 18.5376],
+    "crime_index": 52,
+    "safety_score": 48
+  },
+  {
+    "id": 85,
+    "area": "Manjari",
+    "coordinates": [73.9851, 18.5185],
+    "crime_index": 60,
+    "safety_score": 40
+  },
+  {
+    "id": 86,
+    "area": "Keshav Nagar",
+    "coordinates": [73.949, 18.5437],
+    "crime_index": 53,
+    "safety_score": 47
+  },
+  {
+    "id": 87,
+    "area": "Magarpatta",
+    "coordinates": [73.9272, 18.5197],
+    "crime_index": 47,
+    "safety_score": 53
+  },
+  {
+    "id": 88,
+    "area": "Handewadi",
+    "coordinates": [73.9444, 18.4735],
+    "crime_index": 62,
+    "safety_score": 38
+  },
+  {
+    "id": 89,
+    "area": "Undri",
+    "coordinates": [73.9022, 18.4564],
+    "crime_index": 57,
+    "safety_score": 43
+  },
+  {
+    "id": 90,
+    "area": "Mohammed Wadi",
+    "coordinates": [73.908, 18.47],
+    "crime_index": 56,
+    "safety_score": 44
+  },
+  {
+    "id": 91,
+    "area": "Wagholi",
+    "coordinates": [73.9845, 18.5806],
+    "crime_index": 63,
+    "safety_score": 37
+  },
+  {
+    "id": 92,
+    "area": "Kesnand",
+    "coordinates": [74.0122, 18.569],
+    "crime_index": 60,
+    "safety_score": 40
+  },
+  {
+    "id": 93,
+    "area": "Lohegaon",
+    "coordinates": [73.9276, 18.6052],
+    "crime_index": 55,
+    "safety_score": 45
+  },
+  {
+    "id": 94,
+    "area": "Viman Nagar",
+    "coordinates": [73.9112, 18.5677],
+    "crime_index": 50,
+    "safety_score": 50
+  },
+  {
+    "id": 95,
+    "area": "Kharadi",
+    "coordinates": [73.9417, 18.5525],
+    "crime_index": 53,
+    "safety_score": 47
+  },
+  {
+    "id": 96,
+    "area": "Chandan Nagar",
+    "coordinates": [73.9326, 18.5604],
+    "crime_index": 52,
+    "safety_score": 48
+  },
+  {
+    "id": 97,
+    "area": "Dhanori",
+    "coordinates": [73.8921, 18.5946],
+    "crime_index": 54,
+    "safety_score": 46
+  },
+  {
+    "id": 98,
+    "area": "Tingre Nagar",
+    "coordinates": [73.8885, 18.578],
+    "crime_index": 51,
+    "safety_score": 49
+  },
+  {
+    "id": 99,
+    "area": "Yerawada",
+    "coordinates": [73.8904, 18.5541],
+    "crime_index": 58,
+    "safety_score": 42
+  },
+  {
+    "id": 100,
+    "area": "Bund Garden",
+    "coordinates": [73.8771, 18.5375],
+    "crime_index": 47,
+    "safety_score": 53
+  },
+  {
+    "id": 101,
+    "area": "Shivane",
+    "coordinates": [73.7866, 18.4789],
+    "crime_index": 56,
+    "safety_score": 44
+  },
+  {
+    "id": 102,
+    "area": "Nanded City",
+    "coordinates": [73.7899, 18.4643],
+    "crime_index": 45,
+    "safety_score": 55
+  },
+  {
+    "id": 103,
+    "area": "Khadakwasla",
+    "coordinates": [73.7667, 18.4393],
+    "crime_index": 40,
+    "safety_score": 60
+  },
+  {
+    "id": 104,
+    "area": "Sinhagad Fort",
+    "coordinates": [73.7551, 18.3663],
+    "crime_index": 38,
+    "safety_score": 62
+  },
+  {
+    "id": 105,
+    "area": "Manerwadi",
+    "coordinates": [73.8222, 18.4222],
+    "crime_index": 53,
+    "safety_score": 47
+  },
+  {
+    "id": 106,
+    "area": "Bavdhan",
+    "coordinates": [73.7769, 18.5284],
+    "crime_index": 50,
+    "safety_score": 50
+  },
+  {
+    "id": 107,
+    "area": "Pashan",
+    "coordinates": [73.8031, 18.5363],
+    "crime_index": 48,
+    "safety_score": 52
+  },
+  {
+    "id": 108,
+    "area": "Baner Gaon",
+    "coordinates": [73.7875, 18.561],
+    "crime_index": 46,
+    "safety_score": 54
+  },
+  {
+    "id": 109,
+    "area": "Balewadi",
+    "coordinates": [73.7701, 18.5795],
+    "crime_index": 49,
+    "safety_score": 51
+  },
+  {
+    "id": 110,
+    "area": "Talegaon Dabhade",
+    "coordinates": [73.675, 18.725],
+    "crime_index": 61,
+    "safety_score": 39
+  },
+  {
+    "id": 111,
+    "area": "Pimpri",
+    "coordinates": [73.8069, 18.6285],
+    "crime_index": 65,
+    "safety_score": 35
+  },
+  {
+    "id": 112,
+    "area": "Chinchwad",
+    "coordinates": [73.7769, 18.6298],
+    "crime_index": 62,
+    "safety_score": 38
+  },
+  {
+    "id": 113,
+    "area": "Akurdi",
+    "coordinates": [73.7571, 18.6444],
+    "crime_index": 60,
+    "safety_score": 40
+  },
+  {
+    "id": 114,
+    "area": "Nigdi",
+    "coordinates": [73.7582, 18.6516],
+    "crime_index": 59,
+    "safety_score": 41
+  },
+  {
+    "id": 115,
+    "area": "Ravet",
+    "coordinates": [73.7445, 18.6583],
+    "crime_index": 55,
+    "safety_score": 45
+  },
+  {
+    "id": 116,
+    "area": "Punawale",
+    "coordinates": [73.7436, 18.619],
+    "crime_index": 52,
+    "safety_score": 48
+  },
+  {
+    "id": 117,
+    "area": "Tathawade",
+    "coordinates": [73.7567, 18.6264],
+    "crime_index": 54,
+    "safety_score": 46
+  },
+  {
+    "id": 118,
+    "area": "Wakad",
+    "coordinates": [73.7661, 18.5984],
+    "crime_index": 50,
+    "safety_score": 50
+  },
+  {
+    "id": 119,
+    "area": "Pimple Saudagar",
+    "coordinates": [73.7898, 18.6015],
+    "crime_index": 53,
+    "safety_score": 47
+  },
+  {
+    "id": 120,
+    "area": "Pimple Gurav",
+    "coordinates": [73.8155, 18.5821],
+    "crime_index": 55,
+    "safety_score": 45
+  },
+  {
+    "id": 121,
+    "area": "Kalewadi",
+    "coordinates": [73.7965, 18.6112],
+    "crime_index": 57,
+    "safety_score": 43
+  },
+  {
+    "id": 122,
+    "area": "Kasarsai",
+    "coordinates": [73.6705, 18.628],
+    "crime_index": 44,
+    "safety_score": 56
+  },
+  {
+    "id": 123,
+    "area": "Moshi",
+    "coordinates": [73.8517, 18.6753],
+    "crime_index": 62,
+    "safety_score": 38
+  },
+  {
+    "id": 124,
+    "area": "Chikhali",
+    "coordinates": [73.8446, 18.6751],
+    "crime_index": 60,
+    "safety_score": 40
+  },
+  {
+    "id": 125,
+    "area": "Charholi Budruk",
+    "coordinates": [73.9001, 18.6577],
+    "crime_index": 58,
+    "safety_score": 42
+  },
+  {
+    "id": 126,
+    "area": "Dighi",
+    "coordinates": [73.8744, 18.614],
+    "crime_index": 56,
+    "safety_score": 44
+  },
+  {
+    "id": 127,
+    "area": "Bhosari",
+    "coordinates": [73.8509, 18.6346],
+    "crime_index": 64,
+    "safety_score": 36
+  },
+  {
+    "id": 128,
+    "area": "Alandi",
+    "coordinates": [73.8989, 18.6776],
+    "crime_index": 59,
+    "safety_score": 41
+  },
+  {
+    "id": 129,
+    "area": "Charholi Khurd",
+    "coordinates": [73.9063, 18.6435],
+    "crime_index": 57,
+    "safety_score": 43
+  },
+  {
+    "id": 130,
+    "area": "Markal",
+    "coordinates": [73.9502, 18.6799],
+    "crime_index": 48,
+    "safety_score": 52
+  }
+]

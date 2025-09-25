@@ -1,0 +1,137 @@
+[
+  {
+    "station_id": "PS_001",
+    "name": "Shivajinagar Police Station",
+    "address": "FC Rd, Shivajinagar, Pune 411005",
+    "phone": "020-26123825",
+    "lat": 18.531,
+    "lng": 73.8475,
+    "division": "City"
+  },
+  {
+    "station_id": "PS_002",
+    "name": "Koregaon Park Police Station",
+    "address": "Lane No.4, Koregaon Park, Pune 411001",
+    "phone": "020-26152222",
+    "lat": 18.5335,
+    "lng": 73.8855,
+    "division": "City"
+  },
+  {
+    "station_id": "PS_003",
+    "name": "Bund Garden Police Station",
+    "address": "Bund Garden Road, Pune 411001",
+    "phone": 741074108,
+    "lat": 18.5249,
+    "lng": 73.8756,
+    "division": "City"
+  },
+  {
+    "station_id": "PS_004",
+    "name": "Swargate Police Station",
+    "address": "Swargate, Pune 411037",
+    "phone": 9863025840,
+    "lat": 18.5009,
+    "lng": 73.8627,
+    "division": "City"
+  },
+  {
+    "station_id": "PS_005",
+    "name": "Kothrud Police Station",
+    "address": "Paud Rd, Kothrud, Pune 411038",
+    "phone": 7854741032,
+    "lat": 18.5067,
+    "lng": 73.8025,
+    "division": "Chaturshringi"
+  },
+  {
+    "station_id": "PS_006",
+    "name": "Hadapsar Police Station",
+    "address": "Hadapsar, Pune",
+    "phone": 963859685,
+    "lat": 18.5195,
+    "lng": 73.9316,
+    "division": "Hadapsar"
+  },
+  {
+    "station_id": "PS_007",
+    "name": "Viman Nagar / Vimanthal Police Station",
+    "address": "Viman Nagar, Pune 411014",
+    "phone": 7893214560,
+    "lat": 18.5569,
+    "lng": 73.9089,
+    "division": "Viman Nagar"
+  },
+  {
+    "station_id": "PS_008",
+    "name": "Kondhwa Police Station",
+    "address": "Kondhwa Main Rd, Kondhwa, Pune 411048",
+    "phone": "+91-20-26930780",
+    "lat": 18.4661,
+    "lng": 73.8905,
+    "division": "Kondhwa"
+  },
+  {
+    "station_id": "PS_009",
+    "name": "Pimpri Police Station",
+    "address": "Pimpri, PCMC",
+    "phone": 9986532745,
+    "lat": 18.6293,
+    "lng": 73.8076,
+    "division": "Pimpri-Chinchwad"
+  },
+  {
+    "station_id": "PS_010",
+    "name": "Chinchwad Police Station",
+    "address": "Chinchwad, PCMC",
+    "phone": 9632587410,
+    "lat": 18.6298,
+    "lng": 73.7769,
+    "division": "Pimpri-Chinchwad"
+  },
+  {
+    "station_id": "PS_011",
+    "name": "Hinjewadi Police Station",
+    "address": "Hinjewadi, Pune",
+    "phone": 85207496321,
+    "lat": 18.5989,
+    "lng": 73.6999,
+    "division": "Hinjewadi"
+  },
+  {
+    "station_id": "PS_012",
+    "name": "Wakad Police Station",
+    "address": "Wakad, Pune",
+    "phone": 8855963124,
+    "lat": 18.591,
+    "lng": 73.7707,
+    "division": "Wakad"
+  },
+  {
+    "station_id": "PS_013",
+    "name": "Yerawada Police Station",
+    "address": "Shashtrinagar, Yerawada, Pune",
+    "phone": 15198484555,
+    "lat": 18.5565,
+    "lng": 73.8902,
+    "division": "Yerawada"
+  },
+  {
+    "station_id": "PS_014",
+    "name": "Dighi Police Station",
+    "address": "Dighi, Pune",
+    "phone": 875421020,
+    "lat": 18.6187,
+    "lng": 73.8876,
+    "division": "Dighi"
+  },
+  {
+    "station_id": "PS_015",
+    "name": "Khadki Police Station",
+    "address": "Khadki, Pune",
+    "phone": 7946130202,
+    "lat": 18.5634,
+    "lng": 73.8387,
+    "division": "Khadki"
+  }
+]
