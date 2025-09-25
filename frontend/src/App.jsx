@@ -6,9 +6,12 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./components/Navbar";
-import Settings  from "../src/pages/Settings";
+import Settings from "../src/pages/Settings";
+import SOS from "./pages/SOS";
+import ShareLive from "./pages/Sharelocation";
+import ViewID from "./pages/ViewId";
+import Itinerary from "./pages/Itinerary";
 // Assuming you have a Navbar component
-
 
 // Protected Route Component
 const ProtectedRoute = ({ children }) => {
@@ -35,18 +38,18 @@ const PublicRoute = ({ children }) => {
 function App() {
   // Video event handlers for better control
   const handleVideoLoad = (e) => {
-    console.log('Video loaded successfully');
+    console.log("Video loaded successfully");
   };
 
   const handleVideoError = (e) => {
-    console.error('Video failed to load:', e);
+    console.error("Video failed to load:", e);
   };
 
   const handleVideoCanPlay = (e) => {
-    console.log('Video can start playing');
+    console.log("Video can start playing");
     // Try to play the video
-    e.target.play().catch(err => {
-      console.log('Autoplay prevented:', err);
+    e.target.play().catch((err) => {
+      console.log("Autoplay prevented:", err);
     });
   };
 
@@ -104,7 +107,39 @@ function App() {
             </ProtectedRoute>
           }
         />
-      
+        <Route
+          path="/sos"
+          element={
+            <ProtectedRoute>
+              <SOS />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/share-live"
+          element={
+            <ProtectedRoute>
+              <ShareLive />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/view-id"
+          element={
+            <ProtectedRoute>
+              <ViewID />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/itinerary"
+          element={
+            <ProtectedRoute>
+              <Itinerary />
+            </ProtectedRoute>
+          }
+        />
+
         {/* Add other routes here */}
       </Routes>
     </div>
