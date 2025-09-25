@@ -95,7 +95,7 @@ const Login = () => {
         {/* Form Section */}
         <form onSubmit={handleSubmit} className="modern-login-form">
           <div className="input-group">
-            <div className="input-container">
+            <div className={`input-container ${formData.email ? 'has-value' : ''}`}>
               <input
                 type="email"
                 id="email"
@@ -121,7 +121,7 @@ const Login = () => {
           </div>
 
           <div className="input-group">
-            <div className="input-container">
+            <div className={`input-container ${formData.password ? 'has-value' : ''}`}>
               <input
                 type={showPassword ? "text" : "password"}
                 id="password"

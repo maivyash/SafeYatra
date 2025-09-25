@@ -11,7 +11,7 @@ const Navbar = () => {
       <div className="container">
         <div className="navbar-content">
           <Link to="/" className="navbar-brand">
-            Safe Yatra
+            SafeYatra
           </Link>
 
           <div className="navbar-nav">
@@ -20,8 +20,7 @@ const Navbar = () => {
                 <span className="nav-link">Welcome, {user.name}!</span>
                 <Link to="/settings" className="nav-link">
                   Settings
-                </Link>{" "}
-                {/* added */}
+                </Link>
                 <button onClick={logout} className="btn btn-secondary">
                   Logout
                 </button>
