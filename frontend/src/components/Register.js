@@ -104,8 +104,30 @@ const Register = () => {
     setShowConfirmPassword(!showConfirmPassword);
   };
 
+  const validateStep = (step) => {
+    const stepErrors = {};
+    if (step === 1) {
+      if (!formData.name.trim()) stepErrors.name = 'Name is required';
+      if (!formData.dateOfBirth) stepErrors.dateOfBirth = 'Date of birth is required';
+      if (!formData.gender) stepErrors.gender = 'Gender is required';
+    } else if (step === 2) {
+      if (!formData.email) stepErrors.email = 'Email is required';
+      else if (!/\S+@\S+\.\S+/.test(formData.email)) stepErrors.email = 'Email is invalid';
+      if (!formData.mobile) stepErrors.mobile = 'Mobile number is required';
+      else if (!/^[6-9]\d{9}$/.test(formData.mobile)) stepErrors.mobile = 'Please enter a valid 10-digit mobile number';
+    } else if (step === 3) {
+      if (!formData.password) stepErrors.password = 'Password is required';
+      else if (formData.password.length < 6) stepErrors.password = 'Password must be at least 6 characters';
+      if (!formData.confirmPassword) stepErrors.confirmPassword = 'Please confirm your password';
+      else if (formData.password !== formData.confirmPassword) stepErrors.confirmPassword = 'Passwords do not match';
+    }
+    setErrors((prev) => ({ ...prev, ...stepErrors }));
+    return Object.keys(stepErrors).length === 0;
+  };
+
   const nextStep = () => {
     if (currentStep < totalSteps) {
+      if (!validateStep(currentStep)) return;
       setCurrentStep(currentStep + 1);
     }
   };
@@ -287,7 +309,7 @@ const Register = () => {
               </div>
               
               <div className="input-group">
-                <div className="input-container">
+                <div className={`input-container ${formData.name ? 'has-value' : ''}`}>
                   <input
                     type="text"
                     id="name"
@@ -313,7 +335,7 @@ const Register = () => {
               </div>
 
               <div className="input-group">
-                <div className="input-container">
+                <div className={`input-container ${formData.dateOfBirth ? 'has-value' : ''}`}>
                   <input
                     type="date"
                     id="dateOfBirth"
@@ -339,7 +361,7 @@ const Register = () => {
               </div>
 
               <div className="input-group">
-                <div className="input-container select-container">
+                <div className={`input-container select-container ${formData.gender ? 'has-value' : ''}`}>
                   <select
                     id="gender"
                     name="gender"
@@ -378,7 +400,7 @@ const Register = () => {
               </div>
               
               <div className="input-group">
-                <div className="input-container">
+                <div className={`input-container ${formData.email ? 'has-value' : ''}`}>
                   <input
                     type="email"
                     id="email"
@@ -404,7 +426,7 @@ const Register = () => {
               </div>
 
               <div className="input-group">
-                <div className="input-container">
+                <div className={`input-container ${formData.mobile ? 'has-value' : ''}`}>
                   <input
                     type="tel"
                     id="mobile"
@@ -441,7 +463,7 @@ const Register = () => {
               </div>
               
               <div className="input-group">
-                <div className="input-container">
+                <div className={`input-container ${formData.password ? 'has-value' : ''}`}>
                   <input
                     type={showPassword ? "text" : "password"}
                     id="password"
@@ -485,7 +507,7 @@ const Register = () => {
               </div>
 
               <div className="input-group">
-                <div className="input-container">
+                <div className={`input-container ${formData.confirmPassword ? 'has-value' : ''}`}>
                   <input
                     type={showConfirmPassword ? "text" : "password"}
                     id="confirmPassword"
@@ -539,7 +561,7 @@ const Register = () => {
               </div>
               
               <div className="input-group">
-                <div className="input-container">
+                <div className={`input-container ${formData.aadhaarNumber ? 'has-value' : ''}`}>
                   <input
                     type="text"
                     id="aadhaarNumber"
