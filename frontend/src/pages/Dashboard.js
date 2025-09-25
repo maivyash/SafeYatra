@@ -56,11 +56,28 @@ const Dashboard = () => {
   const [safetyScore, setSafetyScore] = useState(null);
   const [selectedArea, setSelectedArea] = useState(null);
   const [stations, setStations] = useState([]);
+  const controlsAddedRef = useRef(false);
 
   const handleRecenter = () => {
     if (map && currentLocation) {
       map.flyTo(currentLocation, 16, { animate: true });
     }
+  };
+
+  const handleLocateMe = () => {
+    if (!map || !navigator.geolocation) return;
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const loc = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        setCurrentLocation(loc);
+        map.flyTo(loc, 16, { animate: true });
+      },
+      () => {},
+      { enableHighAccuracy: true, maximumAge: 5000, timeout: 5000 }
+    );
   };
 
   // fetch areas + static safety score (use backend /api/location)
@@ -198,6 +215,48 @@ const Dashboard = () => {
         }
       });
   }, []);
+  // Add custom Leaflet controls (once when map available)
+  useEffect(() => {
+    if (!map || controlsAddedRef.current) return;
+    controlsAddedRef.current = true;
+    const recenterCtrl = L.control({ position: "topleft" });
+    recenterCtrl.onAdd = function () {
+      const container = L.DomUtil.create("div", "leaflet-bar recenter-control");
+      const btn = L.DomUtil.create("a", "recenter-control-btn", container);
+      btn.href = "#";
+      btn.title = "Recenter";
+      btn.innerHTML = "⌖";
+      L.DomEvent.on(btn, "click", (e) => {
+        L.DomEvent.preventDefault(e);
+        L.DomEvent.stopPropagation(e);
+        handleRecenter();
+      });
+      return container;
+    };
+    recenterCtrl.addTo(map);
+
+    const locateCtrl = L.control({ position: "topleft" });
+    locateCtrl.onAdd = function () {
+      const container = L.DomUtil.create("div", "leaflet-bar recenter-control");
+      const btn = L.DomUtil.create("a", "recenter-control-btn", container);
+      btn.href = "#";
+      btn.title = "Locate me";
+      btn.innerHTML = "📍";
+      L.DomEvent.on(btn, "click", (e) => {
+        L.DomEvent.preventDefault(e);
+        L.DomEvent.stopPropagation(e);
+        handleLocateMe();
+      });
+      return container;
+    };
+    locateCtrl.addTo(map);
+
+    return () => {
+      // Leaflet doesn't give direct remove on custom controls reference here
+      try { recenterCtrl.remove(); } catch(e) {}
+      try { locateCtrl.remove(); } catch(e) {}
+    };
+  }, [map]);
   // geolocation watch and emit location updates
   useEffect(() => {
     if (!("geolocation" in navigator)) {
@@ -236,41 +295,34 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Header */}
+      {/* Header with welcome and quick stats */}
       <header className="dashboard-header">
-        <h1 className="logo">WanderSafe</h1>
+        <div className="brand-title">
+          <h1 className="logo">SafeYatra Dashboard</h1>
+          <span className="brand-sub">Your safety companion</span>
+        </div>
       </header>
 
-      {/* Welcome Section */}
-      <div className="welcome-section">
-        <img
-          src="https://i.pravatar.cc/100"
-          alt="avatar"
-          className="welcome-avatar"
-        />
-        <div className="welcome-text">
-          <h2>Welcome, {user?.name || "Sarah"}</h2>
-          <p>Digital Tourist ID: Valid until Dec 31, 2024</p>
-        </div>
-      </div>
-
-      {/* Current Safety Status */}
-      <h3 className="section-title">Current Safety Status</h3>
-      <div className="status-grid">
-        <div className="status-card">
-          <p>Safety Score</p>
-          <div className="safety-score">
-            <h3>{safetyScore ?? "–"}/100</h3>
-            <span>+5%</span>
+      <section className="stats-row">
+        <div className="stat-card">
+          <span className="stat-label">Safety Score</span>
+          <div className="stat-value">
+            <span className="big">{safetyScore ?? "–"}</span>
+            <span className="suffix">/100</span>
           </div>
         </div>
-        <div className="status-card">
-          <p>Location</p>
-          <h3 className="location-text">
-            <MapPin size={20} /> {locationName}
-          </h3>
+        <div className="stat-card">
+          <span className="stat-label">Current Location</span>
+          <div className="stat-value location">
+            <MapPin size={18} />
+            <span className="truncate">{locationName}</span>
+          </div>
         </div>
-      </div>
+        <div className="stat-card">
+          <span className="stat-label">Nearby Users</span>
+          <div className="stat-value"><span className="big">{nearbyUsers?.length || 0}</span></div>
+        </div>
+      </section>
 
       {/* Map */}
       <h3 className="section-title">Live Map</h3>
@@ -386,14 +438,8 @@ const Dashboard = () => {
         )}
       </div>
 
-      {/* Recenter Button */}
-      <div className="recenter-btn-wrapper">
-        <button className="recenter-btn" onClick={handleRecenter}>
-          <LocateFixed size={18} /> Recenter
-        </button>
-      </div>
-
       {/* Quick Actions */}
+      <h3 className="section-title">Quick Actions</h3>
       <div className="actions-grid">
         <Link to="/sos" className="action-link">
           <button className="action-btn btn-sos">
@@ -479,3 +525,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+

@@ -1,0 +1,94 @@
+/* Shared styles for simple pages (Settings, SOS, Share Live, View ID, Itinerary) */
+
+:root {
+  --cp-card-bg: #ffffff;
+  --cp-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --cp-border: #eef2f7;
+  --brand-1: #667eea;
+  --brand-2: #764ba2;
+}
+
+.page-container {
+  max-width: 920px;
+  margin: 24px auto;
+  padding: 16px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0 0 16px 0;
+  color: #0f172a;
+}
+
+.panel {
+  background: var(--cp-card-bg);
+  border: 1px solid var(--cp-border);
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: var(--cp-shadow);
+  margin-bottom: 16px;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 100%);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--cp-shadow);
+}
+
+.btn-danger {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--cp-shadow);
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--cp-border);
+  border-radius: 10px;
+}
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border: 1px solid var(--cp-border);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.avatar {
+  width: 120px; height: 120px; border-radius: 12px; object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+

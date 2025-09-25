@@ -148,7 +148,7 @@ code {
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -202,6 +202,28 @@ code {
   background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.35);
 }
+
+/* Navbar welcome chip */
+.navbar-welcome {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 999px;
+  margin-right: 8px;
+}
+.navbar-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+.navbar-welcome-text { display: flex; flex-direction: column; }
+.navbar-welcome-title { color: #fff; font-weight: 800; line-height: 1; }
+.navbar-welcome-sub { color: rgba(255,255,255,0.8); font-size: 12px; line-height: 1; }
 
 .dashboard {
   padding: 40px 0;

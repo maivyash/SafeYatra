@@ -17,13 +17,20 @@ const Navbar = () => {
           <div className="navbar-nav">
             {user ? (
               <>
-                <span className="nav-link">Welcome, {user.name}!</span>
+                <div className="navbar-welcome" title={user.name}>
+                  <img
+                    src={`https://i.pravatar.cc/64?u=${user._id || "anon"}`}
+                    alt="avatar"
+                    className="navbar-avatar"
+                  />
+                  <div className="navbar-welcome-text">
+                    <div className="navbar-welcome-title">Welcome, {user.name}</div>
+                    <div className="navbar-welcome-sub">Digital Tourist ID: Valid until Dec 31, 2024</div>
+                  </div>
+                </div>
                 <Link to="/settings" className="nav-link">
                   Settings
                 </Link>
-                <button onClick={logout} className="btn btn-secondary">
-                  Logout
-                </button>
               </>
             ) : (
               <>
