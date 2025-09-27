@@ -28,6 +28,12 @@ const Navbar = () => {
                     <div className="navbar-welcome-sub">Digital Tourist ID: Valid until Dec 31, 2024</div>
                   </div>
                 </div>
+                <Link to="/police-dashboard" className="nav-link">
+                  Police Dashboard
+                </Link>
+                <Link to="/demo" className="nav-link">
+                  Demo
+                </Link>
                 <Link to="/settings" className="nav-link">
                   Settings
                 </Link>

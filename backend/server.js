@@ -106,6 +106,7 @@ app.use("/api/auth", require("./routes/auth"));
 app.use("/api/users", require("./routes/users"));
 app.use("/api/data", require("./routes/data"));
 app.use("/api/location", require("./routes/locations"));
+app.use("/api/police", require("./routes/police"));
 
 // Basic route
 app.get("/", (req, res) => {

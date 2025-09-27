@@ -11,6 +11,8 @@ import {
   Activity,
   LocateFixed,
   Shield,
+  Users,
+  Phone,
 } from "lucide-react";
 import {
   MapContainer,
@@ -57,6 +59,9 @@ const Dashboard = () => {
   const [selectedArea, setSelectedArea] = useState(null);
   const [stations, setStations] = useState([]);
   const controlsAddedRef = useRef(false);
+  const [weatherData, setWeatherData] = useState(null);
+  const [emergencyContacts, setEmergencyContacts] = useState([]);
+  const [recentAlerts, setRecentAlerts] = useState([]);
 
   const handleRecenter = () => {
     if (map && currentLocation) {
@@ -92,6 +97,47 @@ const Dashboard = () => {
       .then((r) => r.json())
       .then((j) => setSafetyScore(j?.score ?? 85))
       .catch(() => setSafetyScore(85));
+    
+    // Load dummy data
+    setWeatherData({
+      temperature: 28,
+      condition: "Sunny",
+      humidity: 65,
+      windSpeed: 12,
+      uvIndex: 7
+    });
+    
+    setEmergencyContacts([
+      { name: "Police", number: "100", type: "emergency" },
+      { name: "Ambulance", number: "108", type: "medical" },
+      { name: "Fire", number: "101", type: "fire" },
+      { name: "Tourist Helpline", number: "1363", type: "tourist" },
+      { name: "Women Helpline", number: "181", type: "women" }
+    ]);
+    
+    setRecentAlerts([
+      {
+        id: 1,
+        type: "safety",
+        message: "High crime rate reported in Koregaon Park area",
+        timestamp: "2 hours ago",
+        severity: "medium"
+      },
+      {
+        id: 2,
+        type: "weather",
+        message: "Heavy rain expected in evening",
+        timestamp: "4 hours ago",
+        severity: "low"
+      },
+      {
+        id: 3,
+        type: "traffic",
+        message: "Road closure on MG Road due to construction",
+        timestamp: "6 hours ago",
+        severity: "low"
+      }
+    ]);
   }, []);
 
   // Throttle reverse-geocode calls
@@ -322,6 +368,13 @@ const Dashboard = () => {
           <span className="stat-label">Nearby Users</span>
           <div className="stat-value"><span className="big">{nearbyUsers?.length || 0}</span></div>
         </div>
+        <div className="stat-card">
+          <span className="stat-label">Weather</span>
+          <div className="stat-value">
+            <span className="big">{weatherData?.temperature}°C</span>
+            <span className="suffix">{weatherData?.condition}</span>
+          </div>
+        </div>
       </section>
 
       {/* Map */}
@@ -501,6 +554,49 @@ const Dashboard = () => {
             <small>Low risk</small>
           </div>
         </div>
+      </div>
+
+      {/* Emergency Contacts */}
+      <h3 className="section-title">Emergency Contacts</h3>
+      <div className="emergency-contacts">
+        {emergencyContacts.map((contact, index) => (
+          <div key={index} className="contact-card">
+            <div className="contact-info">
+              <div className="contact-icon">
+                {contact.type === 'emergency' && <Shield size={20} />}
+                {contact.type === 'medical' && <Activity size={20} />}
+                {contact.type === 'fire' && <AlertTriangle size={20} />}
+                {contact.type === 'tourist' && <MapPin size={20} />}
+                {contact.type === 'women' && <Users size={20} />}
+              </div>
+              <div className="contact-details">
+                <h4>{contact.name}</h4>
+                <p>{contact.number}</p>
+              </div>
+            </div>
+            <button className="call-btn">
+              <Phone size={16} />
+            </button>
+          </div>
+        ))}
+      </div>
+
+      {/* Recent Alerts */}
+      <h3 className="section-title">Recent Alerts</h3>
+      <div className="alerts-container">
+        {recentAlerts.map((alert) => (
+          <div key={alert.id} className={`alert-item alert-${alert.severity}`}>
+            <div className="alert-icon-wrapper">
+              {alert.type === 'safety' && <Shield size={20} />}
+              {alert.type === 'weather' && <Activity size={20} />}
+              {alert.type === 'traffic' && <MapPin size={20} />}
+            </div>
+            <div>
+              <p>{alert.message}</p>
+              <small>{alert.timestamp}</small>
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* IoT Integration */}
