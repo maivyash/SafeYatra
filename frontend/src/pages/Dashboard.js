@@ -494,33 +494,42 @@ const Dashboard = () => {
       {/* Quick Actions */}
       <h3 className="section-title">Quick Actions</h3>
       <div className="actions-grid">
-        <Link to="/sos" className="action-link">
+        <Link to="/sos" className="action-link dice-tl">
           <button className="action-btn btn-sos">
             <AlertTriangle size={20} />
             SOS
           </button>
         </Link>
 
-        <Link to="/share-live" className="action-link">
+        <Link to="/share-live" className="action-link dice-tr">
           <button className="action-btn btn-blue">
             <Share2 size={20} />
             Share Live
           </button>
         </Link>
 
-        <Link to="/view-id" className="action-link">
+        <Link to="/view-id" className="action-link dice-center">
           <button className="action-btn btn-blue">
             <User size={20} />
             View ID
           </button>
         </Link>
 
-        <Link to="/itinerary" className="action-link">
+        <Link to="/itinerary" className="action-link dice-bl">
           <button className="action-btn btn-blue">
             <BookOpen size={20} />
             Itinerary
           </button>
         </Link>
+
+        <Link to="/fir" className="action-link dice-br">
+          <button className="action-btn btn-blue">
+            <Shield size={20} />
+            FIR
+          </button>
+        </Link>
+
+       
       </div>
 
       <h3 className="section-title">Real-time Alerts & Safety Tips</h3>

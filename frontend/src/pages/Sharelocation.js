@@ -4,7 +4,6 @@ import { useAuth } from "../contexts/AuthContext";
 import "./CommonPages.css";
 
 const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:5000";
-const LS_KEY = "shareLiveContacts_v1";
 
 const ShareLive = () => {
   const { user } = useAuth();
@@ -12,21 +11,35 @@ const ShareLive = () => {
   const [form, setForm] = useState({ name: "", email: "", phone: "" });
   const [sharing, setSharing] = useState(false);
   useEffect(() => {
-    const saved = localStorage.getItem(LS_KEY);
-    if (saved) setContacts(JSON.parse(saved));
+    (async () => {
+      try {
+        const res = await axios.get(`${API_BASE}/api/share/contacts/my`, { withCredentials: true });
+        if (res.data?.success) setContacts(res.data.contacts || []);
+      } catch (_) {}
+    })();
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem(LS_KEY, JSON.stringify(contacts));
-  }, [contacts]);
-
-  const addContact = (e) => {
+  const addContact = async (e) => {
     e.preventDefault();
-    setContacts((s) => [...s, { id: Date.now(), ...form }]);
-    setForm({ name: "", email: "", phone: "" });
+    try {
+      const res = await axios.post(
+        `${API_BASE}/api/share/contacts`,
+        { contacts: [{ ...form }] },
+        { withCredentials: true }
+      );
+      if (res.data?.success) {
+        setContacts((s) => [...res.data.contacts, ...s]);
+        setForm({ name: "", email: "", phone: "" });
+      }
+    } catch (_) {}
   };
 
-  const remove = (id) => setContacts((s) => s.filter((c) => c.id !== id));
+  const remove = async (id) => {
+    try {
+      const res = await axios.delete(`${API_BASE}/api/share/contacts/${id}`, { withCredentials: true });
+      if (res.data?.success) setContacts((s) => s.filter((c) => c._id !== id));
+    } catch (_) {}
+  };
 
   const shareNow = async () => {
     if (!contacts.length) return;
@@ -63,11 +76,11 @@ const ShareLive = () => {
           {contacts.length === 0 && <div>No contacts yet.</div>}
           <ul className="list">
             {contacts.map((c) => (
-              <li key={c.id} className="list-item" style={{ marginBottom: 8 }}>
+              <li key={c._id} className="list-item" style={{ marginBottom: 8 }}>
                 <div>
                   <strong>{c.name}</strong> • {c.email} • {c.phone}
                 </div>
-                <button className="btn-danger" onClick={() => remove(c.id)}>Remove</button>
+                <button className="btn-danger" onClick={() => remove(c._id)}>Remove</button>
               </li>
             ))}
           </ul>

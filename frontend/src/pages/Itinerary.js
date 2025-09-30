@@ -1,28 +1,54 @@
 import React, { useState, useEffect } from "react";
 import "./CommonPages.css";
 
-const LS_KEY = "user_itinerary_v1";
+const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:5000";
 
 const Itinerary = () => {
   const [items, setItems] = useState([]);
   const [form, setForm] = useState({ place: "", date: "", notes: "" });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem(LS_KEY);
-    if (saved) setItems(JSON.parse(saved));
+    (async () => {
+      try {
+        const res = await fetch(`${API_BASE}/api/itinerary/my`, {
+          credentials: "include",
+        });
+        const json = await res.json();
+        if (json?.success) setItems(json.items || []);
+      } catch (_) {}
+    })();
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem(LS_KEY, JSON.stringify(items));
-  }, [items]);
-
-  const add = (e) => {
+  const add = async (e) => {
     e.preventDefault();
-    setItems((s) => [...s, { id: Date.now(), ...form }]);
-    setForm({ place: "", date: "", notes: "" });
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/itinerary`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
+        body: JSON.stringify(form),
+      });
+      const json = await res.json();
+      if (json?.success) {
+        setItems((s) => [json.item, ...s]);
+        setForm({ place: "", date: "", notes: "" });
+      }
+    } catch (_) {}
+    setLoading(false);
   };
 
-  const remove = (id) => setItems((s) => s.filter((i) => i.id !== id));
+  const remove = async (id) => {
+    try {
+      const res = await fetch(`${API_BASE}/api/itinerary/${id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      const json = await res.json();
+      if (json?.success) setItems((s) => s.filter((i) => i._id !== id));
+    } catch (_) {}
+  };
 
   return (
     <div className="page-container">
@@ -41,12 +67,12 @@ const Itinerary = () => {
         {items.length === 0 && <div>No itinerary items.</div>}
         <ul className="list">
           {items.map((it) => (
-            <li key={it.id} className="list-item" style={{ marginBottom: 8 }}>
+          <li key={it._id} className="list-item" style={{ marginBottom: 8 }}>
               <div>
                 <strong>{it.place}</strong> — {it.date}
                 <div style={{ color: "#64748b" }}>{it.notes}</div>
               </div>
-              <button className="btn-danger" onClick={() => remove(it.id)}>Delete</button>
+              <button className="btn-danger" onClick={() => remove(it._id)}>Delete</button>
             </li>
           ))}
         </ul>

@@ -11,6 +11,7 @@ import SOS from "./pages/SOS";
 import ShareLive from "./pages/Sharelocation";
 import ViewID from "./pages/ViewId";
 import Itinerary from "./pages/Itinerary";
+import FIR from "./pages/FIR";
 import PoliceDashboard from "./pages/PoliceDashboard";
 import Demo from "./pages/Demo";
 // Assuming you have a Navbar component
@@ -138,6 +139,14 @@ function App() {
           element={
             <ProtectedRoute>
               <Itinerary />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/fir"
+          element={
+            <ProtectedRoute>
+              <FIR />
             </ProtectedRoute>
           }
         />

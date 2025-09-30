@@ -122,7 +122,14 @@ body {
   box-shadow: var(--shadow-1);
   padding: 16px;
   border: 1px solid #eef2f7;
+  position: relative;
+  transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
 }
+.stat-card:hover { transform: translateY(-3px); box-shadow: 0 14px 30px rgba(2,6,23,.08); border-color: #e2e8f0; }
+.stat-card:active { transform: translateY(-1px) scale(.99); }
+.stat-card.clickable { cursor: pointer; }
+.stat-card .stat-cta { position: absolute; right: 12px; bottom: 12px; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 999px; background: #0ea5e9; color: #fff; box-shadow: var(--shadow-1); }
+.stat-card .stat-cta:hover { filter: brightness(1.05); }
 .stat-label { font-size: 12px; color: var(--text-3); font-weight: 700; }
 .stat-value { display: flex; align-items: center; gap: 8px; margin-top: 6px; }
 .stat-value .big { font-size: 26px; font-weight: 800; color: var(--text-1); }
@@ -183,27 +190,47 @@ body {
 /* Quick Actions */
 .actions-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: 20px;
   margin-bottom: 32px;
+  justify-items: center;
+  align-items: center;
 }
 
-.action-link { text-decoration: none; }
+.action-link { text-decoration: none; display: contents; }
 
 .action-btn {
-  border: 1px solid transparent;
+  min-width: 120px;
+  min-height: 90px;
   padding: 16px;
   font-weight: 700;
-  border-radius: 14px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: all .25s ease;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 8px;
   font-size: 14px;
-  box-shadow: var(--shadow-1);
+  box-shadow: 0 10px 25px rgba(2,6,23,0.10);
+  position: relative;
+  overflow: hidden;
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.28);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
 }
+.action-btn:hover { transform: translateY(-3px); box-shadow: 0 16px 35px rgba(2,6,23,0.14); }
+.action-btn:active { transform: translateY(-1px) scale(.99); }
+.action-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.20), rgba(255,255,255,0.02));
+  pointer-events: none;
+}
+.action-btn:disabled { opacity: .7; cursor: not-allowed; transform: none; }
 
 .action-btn:focus-visible {
   outline: 4px solid var(--ring);
@@ -211,16 +238,51 @@ body {
 }
 
 .btn-sos {
-  background: linear-gradient(135deg, #ef4444, #f97316);
+  background: linear-gradient(135deg, rgba(239,68,68,0.88), rgba(249,115,22,0.88));
   color: #ffffff;
+  border-color: rgba(239,68,68,0.35);
 }
 .btn-sos:hover { transform: translateY(-2px); }
 
 .btn-blue {
-  background: linear-gradient(135deg, var(--brand-1) 0%, var(--brand-2) 100%);
+  background: linear-gradient(135deg, rgba(102,126,234,0.85) 0%, rgba(118,75,162,0.85) 100%);
   color: #ffffff;
+  border-color: rgba(102,126,234,0.35);
 }
 .btn-blue:hover { transform: translateY(-2px); }
+
+/* Quick Analysis button styling */
+.btn-analysis {
+  background: linear-gradient(135deg, rgba(16,185,129,0.85) 0%, rgba(20,184,166,0.85) 100%);
+  color: #ffffff;
+  border: 1px solid rgba(16, 185, 129, 0.30);
+  box-shadow: 0 12px 28px rgba(20, 184, 166, 0.28);
+}
+.btn-analysis:hover {
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 14px 28px rgba(20, 184, 166, 0.28);
+}
+.btn-analysis:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+/* Subtle sheen effect on hover for quick actions */
+.action-btn::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient( circle at 20% 20%, rgba(255,255,255,0.25), rgba(255,255,255,0) 60% );
+  opacity: 0;
+  transition: opacity .25s ease, transform .25s ease;
+}
+.action-btn:hover::after {
+  opacity: 1;
+  transform: translate3d(0, 10%, 0);
+}
+
 
 /* Recenter floating button */
 .recenter-btn-wrapper {
@@ -581,6 +643,13 @@ input:checked + .slider:before {
 /* Responsive */
 @media (max-width: 768px) {
   .dashboard-container { max-width: 100%; }
-  .actions-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .actions-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; gap: 12px; }
   .status-grid { grid-template-columns: 1fr; }
 }
+
+/* Dice layout positions (3x3 grid): TL, TR, Center, BL, BR */
+.dice-tl { grid-column: 1; grid-row: 1; }
+.dice-tr { grid-column: 3; grid-row: 1; }
+.dice-center { grid-column: 2; grid-row: 2; }
+.dice-bl { grid-column: 1; grid-row: 3; }
+.dice-br { grid-column: 3; grid-row: 3; }

@@ -91,6 +91,9 @@ const PoliceDashboard = () => {
   const [filterStatus, setFilterStatus] = useState("all");
   const [socket, setSocket] = useState(null);
   const [isConnected, setIsConnected] = useState(false);
+  const [lookupUserId, setLookupUserId] = useState("");
+  const [lookupItinerary, setLookupItinerary] = useState([]);
+  const [lookupContacts, setLookupContacts] = useState([]);
 
   // Initialize socket connection
   useEffect(() => {
@@ -271,6 +274,68 @@ const PoliceDashboard = () => {
       <div className="dashboard-content">
         {/* Left Panel - Lists */}
         <div className="left-panel">
+          {/* User Data Lookup */}
+          <div className="list-section">
+            <h3>
+              <Users size={20} />
+              User Data Lookup
+            </h3>
+            <div className="panel" style={{ padding: 12 }}>
+              <div className="search-box" style={{ marginBottom: 8 }}>
+                <input
+                  type="text"
+                  placeholder="Enter userId"
+                  value={lookupUserId}
+                  onChange={(e) => setLookupUserId(e.target.value)}
+                />
+              </div>
+              <div style={{ display: 'flex', gap: 8 }}>
+                <button className="refresh-btn" onClick={async () => {
+                  if (!lookupUserId) return;
+                  try {
+                    const [itRes, ctRes] = await Promise.all([
+                      fetch(`${API_BASE}/api/itinerary/user/${lookupUserId}`),
+                      fetch(`${API_BASE}/api/share/contacts/user/${lookupUserId}`),
+                    ]);
+                    const itJson = await itRes.json();
+                    const ctJson = await ctRes.json();
+                    if (itJson?.success) setLookupItinerary(itJson.items || []);
+                    if (ctJson?.success) setLookupContacts(ctJson.contacts || []);
+                  } catch {}
+                }}>
+                  Fetch
+                </button>
+                <button className="refresh-btn" onClick={() => { setLookupItinerary([]); setLookupContacts([]); }}>Clear</button>
+              </div>
+              <div style={{ marginTop: 10 }}>
+                <h4>Itinerary</h4>
+                {lookupItinerary.length === 0 ? <div>None</div> : (
+                  <ul className="list">
+                    {lookupItinerary.map(i => (
+                      <li key={i._id} className="list-item" style={{ marginBottom: 6 }}>
+                        <div>
+                          <strong>{i.place}</strong> — {i.date}
+                          <div style={{ color: '#64748b' }}>{i.notes}</div>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                <h4 style={{ marginTop: 8 }}>Share Contacts</h4>
+                {lookupContacts.length === 0 ? <div>None</div> : (
+                  <ul className="list">
+                    {lookupContacts.map(c => (
+                      <li key={c._id} className="list-item" style={{ marginBottom: 6 }}>
+                        <div>
+                          <strong>{c.name}</strong> • {c.email} • {c.phone}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
+          </div>
           {/* Search and Filter */}
           <div className="search-filter">
             <div className="search-box">
