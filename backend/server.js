@@ -16,6 +16,8 @@ const io = new Server(server, {
     methods: ["GET", "POST"],
   },
 });
+// Expose io to routes
+app.set("io", io);
 
 // Middleware
 app.use(
@@ -107,6 +109,9 @@ app.use("/api/users", require("./routes/users"));
 app.use("/api/data", require("./routes/data"));
 app.use("/api/location", require("./routes/locations"));
 app.use("/api/police", require("./routes/police"));
+app.use("/api/fir", require("./routes/fir"));
+app.use("/api/itinerary", require("./routes/itinerary"));
+app.use("/api/share", require("./routes/share"));
 
 // Basic route
 app.get("/", (req, res) => {

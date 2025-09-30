@@ -1,7 +1,7 @@
 const express = require("express");
 const { body, validationResult } = require("express-validator");
 const { protect } = require("../middleware/auth");
-const jwt = require("jsonwebtoken");
+   const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 const mongoose = require("mongoose");
 const multer = require("multer");
