@@ -58,7 +58,6 @@ SIH/
 │
 └── README.md                     # Project documentation
 
----
 
 ## 🛠️ Installation & Setup
 
@@ -75,4 +74,5 @@ SIH/
 ```bash
 cd backend
 npm install
+
 
