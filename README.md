@@ -20,7 +20,7 @@ A full-stack web application built with **MongoDB**, **Express.js**, **React.js*
 - ⚠️ **Error Handling** – Comprehensive error handling and user feedback  
 - 🌐 **API Structure** – RESTful API with placeholder endpoints for future development  
 
----
+
 
 ## 📁 Project Structure
 
@@ -57,7 +57,7 @@ SIH/
 │   └── package.json              # Frontend dependencies
 │
 └── README.md                     # Project documentation
-
+```
 
 ## 🛠️ Installation & Setup
 
@@ -74,5 +74,6 @@ SIH/
 ```bash
 cd backend
 npm install
+
 
 
