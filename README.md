@@ -24,39 +24,39 @@ A full-stack web application built with **MongoDB**, **Express.js**, **React.js*
 
 ## 📁 Project Structure
 
+```text
 SIH/
-├── backend/ # Express.js backend
-│ ├── models/ # MongoDB models
-│ │ └── User.js # User schema with password hashing
-│ ├── routes/ # API routes
-│ │ ├── auth.js # Authentication routes (login/register)
-│ │ ├── users.js # User management routes
-│ │ └── data.js # Data management routes (placeholder)
-│ ├── middleware/ # Custom middleware
-│ │ └── auth.js # JWT authentication middleware
-│ ├── server.js # Main server file
-│ └── package.json # Backend dependencies
+├── backend/                      # Express.js backend
+│   ├── models/                   # MongoDB models
+│   │   └── User.js               # User schema with password hashing
+│   ├── routes/                   # API routes
+│   │   ├── auth.js               # Authentication routes (login/register)
+│   │   ├── users.js              # User management routes
+│   │   └── data.js               # Data management routes (placeholder)
+│   ├── middleware/               # Custom middleware
+│   │   └── auth.js               # JWT authentication middleware
+│   ├── server.js                 # Main server file
+│   └── package.json              # Backend dependencies
 │
-├── frontend/ # React.js frontend
-│ ├── public/ # Static files
-│ ├── src/
-│ │ ├── components/ # React components
-│ │ │ ├── Login.js # Login form component
-│ │ │ ├── Register.js # Registration form component
-│ │ │ ├── Dashboard.js # Protected dashboard
-│ │ │ └── Navbar.js # Navigation component
-│ │ ├── contexts/ # React contexts
-│ │ │ └── AuthContext.js # Authentication state management
-│ │ ├── services/ # API services
-│ │ │ └── api.js # Axios configuration & API calls
-│ │ ├── App.js # Main App component
-│ │ ├── App.css # App styles
-│ │ ├── index.js # React entry point
-│ │ └── index.css # Global styles
-│ └── package.json # Frontend dependencies
+├── frontend/                     # React.js frontend
+│   ├── public/                   # Static files
+│   ├── src/
+│   │   ├── components/           # React components
+│   │   │   ├── Login.js          # Login form component
+│   │   │   ├── Register.js       # Registration form component
+│   │   │   ├── Dashboard.js      # Protected dashboard
+│   │   │   └── Navbar.js         # Navigation component
+│   │   ├── contexts/             # React contexts
+│   │   │   └── AuthContext.js    # Authentication state management
+│   │   ├── services/             # API services
+│   │   │   └── api.js            # Axios configuration & API calls
+│   │   ├── App.js                # Main App component
+│   │   ├── App.css               # App styles
+│   │   ├── index.js              # React entry point
+│   │   └── index.css             # Global styles
+│   └── package.json              # Frontend dependencies
 │
-└── README.md # Project documentation
-
+└── README.md                     # Project documentation
 
 ---
 
@@ -75,3 +75,4 @@ SIH/
 ```bash
 cd backend
 npm install
+
